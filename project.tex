@@ -121,6 +121,28 @@ indentation at the start of each paragraph.
 Of course
 you may want to use several chapters and much more text than here.
 
+\chapter{Selecting HTTP status codes}
+
+\section{401 Unauthorized vs. 403 Forbidden}
+
+We have decided to select the following status codes for the following scenarios:
+
+\begin{itemize}
+  \item 401: being unauthenticated for a request that requires authentication
+  \item 403: being authenticated but not authorized to perform an action
+\end{itemize}
+
+This might seem obvious, but the status text for \emph{401} is \emph{401 Unauthorized},
+despite it being for authentication and not authorization.
+
+Sources:
+\begin{itemize}
+  \item https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
+  \item https://httpstatuses.com/401
+  \item https://httpstatuses.com/403
+\end{itemize}
+
+
 % use the following and \cite{} as above if you use BibTeX
 % otherwise generate bibtem entries
 \bibliographystyle{plain}
