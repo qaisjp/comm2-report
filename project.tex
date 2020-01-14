@@ -116,10 +116,38 @@ paragraphs are separated by a vertical space, and there is no
 indentation at the start of each paragraph.
 \end{itemize}
 
-\chapter{The Real Thing}
+\chapter{Deletions}
 
-Of course
-you may want to use several chapters and much more text than here.
+A common approach to deleting entities in webapps (todo: add source) is to set an \emph{is\_deleted} flag to \emph{true} and simply hide the row from output.
+
+This is useful if we need to maintain an audit log or (considering that deletions
+are destructive) would like to undo changes.
+
+Users, however, may not approeciate a website holding onto data they've requested to
+be deleted.
+
+When deleting \emph{resources} we can just do \emph{delete from resources where resource\_id = }
+and let PostgreSQL cascade this via foreign keys.
+
+Doing this for general users has a few caveats:
+\begin{itemize}
+  \item If a user has requested a deletion, their comments should be anonymised
+  \item If an administrator has deleted the account,
+        the admin should decide whether or not their comments should be removed too.
+  \item What if an admin decides, post-comment-retaining-deletion, that their posts should have indeed been deleted?
+\end{itemize}
+
+What if an administrator wants to delete their own account? Most actions (like bans) have an
+admin user id associated, and the deletion of an admin account should not delete all the associated bans!
+
+Solutions here include:
+
+\begin{itemize}
+  \item For comments and bans, allow "author\_id" to be nullable. Show "deleted" in place.
+  \item When deleting user accounts, delete all the associated data, but keep the user row, and set "is\_deleted" to true. We should also remove all personal data.
+\end{itemize}
+
+This is in line with GDPR as only PII needs to be removed. Comments do not fall under GDPR.
 
 \chapter{Selecting HTTP status codes}
 
@@ -135,7 +163,7 @@ We have decided to select the following status codes for the following scenarios
 This might seem obvious, but the status text for \emph{401} is \emph{401 Unauthorized},
 despite it being for authentication and not authorization.
 
-Sources:
+Sources: (todo: citationify)
 \begin{itemize}
   \item https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
   \item https://httpstatuses.com/401
