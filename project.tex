@@ -116,6 +116,47 @@ paragraphs are separated by a vertical space, and there is no
 indentation at the start of each paragraph.
 \end{itemize}
 
+\chapter{API Design}
+
+API design is inspired from GitHub's Rest API v3. https://developer.github.com/v3/
+
+This is a good RESTful API.
+
+\section{Permission management}
+
+We've decided that permissions will be granular for site administrators, but simple on a resource level. Original creators of a resource retain permanent access rights, and they can also designate additional resource administrators. These designated resource admins have all the same permissions as the creator.
+
+\section{Authentication}
+
+Authentication is implemented as a middleware.
+
+Initially we had two middleware functions:
+\begin{itemize}
+  \item \emph{authRequired} - this is returned by the JWT library \\ (\emph{authMiddleware.MiddlewareFunc()}). Any route that includes this middleware function requires the request to have an authenticated user.
+  \item \emph{authMaybeRequired} - this is a function we've created that, if an auth token is provided, verifies the user (via \emph{authRequired}), and otherwise sets the "user" context variable to \emph{nil}.
+\end{itemize}
+
+This works well when \emph{authMaybeRequired} isn't used frequently, but we soon discovered that a lot of our routes included this. Some entities - resources, packages, gallery items — may be in a state that means that they should only be accessible to resource managers and site admins.
+
+We decided to change to three middleware functions:
+\begin{itemize}
+  \item \emph{authMiddlewareFunc} - this is returned by the JWT library \\ via \emph{authMiddleware.MiddlewareFunc()}, as \emph{authRequired} above
+  \item \emph{authMaybeRequired} - this is the same as above except it verifies the user via \emph{authMiddlewareFunc}
+  \item \emph{authRequired} - this is a function we've created that, if the "user" context variable is \emph{nil}, will abort, and send a response containing:
+   \begin{itemize}
+     \item the header "\emph{WWW-Authenticate}" to "\emph{JWT realm=multitheftauto.com}",
+     \item the status code to \emph{401 Status Unauthorized}, and
+     \item the body \emph{\{"message": "You must be logged in to perform that operation."\}}
+   \end{itemize}
+\end{itemize}
+
+Full list:
+
+\begin{itemize}
+  \item resources - unpublished resources, suspended resources
+  \item packages - draft packages
+\end{itemize}
+
 \chapter{Deletions}
 
 A common approach to deleting entities in webapps (todo: add source) is to set an \emph{is\_deleted} flag to \emph{true} and simply hide the row from output.
@@ -169,6 +210,12 @@ Sources: (todo: citationify)
   \item https://httpstatuses.com/401
   \item https://httpstatuses.com/403
 \end{itemize}
+
+\section{Create packages}
+
+It is possible for a user to send many \emph{POST /v1/resources/:resource\_id/pkg} requests, creating many blank packages.
+
+
 
 
 % use the following and \cite{} as above if you use BibTeX
