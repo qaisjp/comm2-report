@@ -94,10 +94,6 @@ It should be 30 to 60 pages long, and preferably no shorter than 20 pages.
 Appendices are in addition to this and you should place detail
 here which may be too much or not strictly necessary when reading the relevant section.
 
-\section{Using Sections}
-
-Divide your chapters into sub-parts as appropriate.
-
 \section{Citations}
 
 Note that citations
@@ -162,7 +158,7 @@ Full list:
   \item packages - draft packages
 \end{itemize}
 
-\chapter{Deletions}
+\section{Deletions}
 
 A common approach to deleting entities in webapps (todo: add source) is to set an \emph{is\_deleted} flag to \emph{true} and simply hide the row from output.
 
@@ -195,9 +191,41 @@ Solutions here include:
 
 This is in line with GDPR as only PII needs to be removed. Comments do not fall under GDPR.
 
-\chapter{Selecting HTTP status codes}
 
-\section{401 Unauthorized vs. 403 Forbidden}
+\section{Upload packages}
+
+It is possible for a user to send many \emph{POST /v1/resources/:resource\_id/pkg} requests, creating many blank packages. These will all be created a draft packages until:
+
+\begin{itemize}
+  \item an actual file has been uploaded (and checked)
+  \item the user publishes the package (it is no longer in a ``draft'' state)
+\end{itemize}
+
+Once a file is uploaded by the client and is memory, we check the MIME type of the uploaded file. If the file is not of the ``application/zip'' MIME type, we return a ``415 Unsupported Media Type'' and discard the data.
+
+TODO THEN WE CHECK THE ZIP ITSELF IN memory
+
+Once we've verified that the zip is safe to use, we upload to a storage service using gocloud.dev/blob https://gocloud.dev/howto/blob.
+
+\begin{quote}
+  "Blobs are a common abstraction for storing unstructured data on Cloud storage services and accessing them via HTTP. This guide shows how to work with blobs in the Go CDK."
+\end{quote}
+
+This is useful as it is a generic backend for various file storage services, including support for Google Cloud Storage, Amazon S3, Azure Blob Service, and of course Local Storage. This makes the website scalable and resilient as we can rely on one of those services doing backups for us, and also use them to deliver stuff for us. Less bandwidth. But we can still use Local Storage when sysadmins are testing or if they would prefer to use local storage (if they do not want to pay for an external service)
+
+The gocloud.dev library gives us safety as it converts filenames to something safe. This means that we don't have to worry about malicious filenames when storing files locally.
+
+The filename ``../test'' is stored as ``..\_\_0x2f\_\_test''. This is secure.
+
+However, gocloud allows filenames to contain forward slashes (creating a subfolder). Whilst we could ensure that our filename has no directory separators, we chose to force filenames to be stored as ``pkg\${ID}.zip'' (such as pkg6.zip).
+
+This additionally means that we don't need to write code to delete old packages when reuploading a file (during initial package creation, whilst in draft state). We can just rely on gocloud.dev replacing the blob with the new file.
+
+We only need to delete the files when packages are deleted!
+
+\section{Selecting HTTP status codes}
+
+\subsection{401 Unauthorized vs. 403 Forbidden}
 
 We have decided to select the following status codes for the following scenarios:
 
@@ -215,11 +243,6 @@ Sources: (todo: citationify)
   \item https://httpstatuses.com/401
   \item https://httpstatuses.com/403
 \end{itemize}
-
-\section{Create packages}
-
-It is possible for a user to send many \emph{POST /v1/resources/:resource\_id/pkg} requests, creating many blank packages.
-
 
 
 
