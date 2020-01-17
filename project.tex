@@ -205,6 +205,8 @@ Once a file is uploaded by the client and is memory, we check the MIME type of t
 
 TODO THEN WE CHECK THE ZIP ITSELF IN memory
 
+
+
 Once we've verified that the zip is safe to use, we upload to a storage service using gocloud.dev/blob https://gocloud.dev/howto/blob.
 
 \begin{quote}
@@ -222,6 +224,14 @@ However, gocloud allows filenames to contain forward slashes (creating a subfold
 This additionally means that we don't need to write code to delete old packages when reuploading a file (during initial package creation, whilst in draft state). We can just rely on gocloud.dev replacing the blob with the new file.
 
 We only need to delete the files when packages are deleted!
+
+When implementing this we tried to use io.Copy to copy from the input file to the bucket writer, but we could not do this. So, from the advice of https://stackoverflow.com/questions/39791021/how-to-read-multiple-times-from-same-io-reader we refactored our initial code to use io.TeeReader: https://golang.org/pkg/io/\#TeeReader
+
+We realised that TeeReader returns an io.Reader which does not implement io.ReaderAt, so in the end we just used ioutil.ReadAll to read the entire file into a []bytes struct. This means that we don't need to use a io.Copy, and can produce a io.ReaderAt for the zip library using bytes.NewReader (which returns a bytes.Reader, which DOES implement io.ReaderAt). https://stackoverflow.com/questions/50539118/golang-unzip-response-body/50539327
+
+\begin{quote}
+  TeeReader returns a Reader that writes to w what it reads from r. All reads from r performed through it are matched with corresponding writes to w. There is no internal buffering - the write must complete before the read completes. Any error encountered while writing is reported as a read error.
+\end{quote}
 
 \section{Error handling}
 
