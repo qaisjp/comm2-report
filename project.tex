@@ -223,6 +223,10 @@ This additionally means that we don't need to write code to delete old packages 
 
 We only need to delete the files when packages are deleted!
 
+\section{Error handling}
+
+Initially returning errors but this is leaky. NOw we just report http.SttusInternalServerError and just log the error
+
 \section{Selecting HTTP status codes}
 
 \subsection{401 Unauthorized vs. 403 Forbidden}
