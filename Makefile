@@ -1,17 +1,11 @@
-.PHONY: project.tex project.pdf
+.PHONY: project.pdf
 
-project.tex:
-	cat includes/header.tex > project.tex
-
-	# Introduction
-	printf "%s\n" "\chapter{Introduction}" >> project.tex
-	pandoc chapters/01-introduction.md -t latex >> project.tex
-
-	# Implementation
-	printf "%s\n" "\chapter{Implementation}" >> project.tex
-	pandoc chapters/02-implementation.md -t latex >> project.tex
-
-	cat includes/footer.tex >> project.tex
-
-project.pdf: project.tex
-	latexmk -pdf project.tex
+project.pdf:
+	pandoc \
+		--filter pandoc-citeproc \
+		--include-in-header includes/include.tex \
+		--include-before-body includes/acknowledgements.tex \
+		--metadata-file includes/metadata.yaml \
+		includes/bibliography.yaml \
+		chapters/01-introduction.md chapters/02-implementation.md \
+		-o project.pdf

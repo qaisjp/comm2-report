@@ -1,0 +1,18 @@
+---
+toc: true
+numbersections: true
+bibliography: true
+include-after: \bibliographystyle{plain}
+
+documentclass: infthesis
+classoption:
+    - bsc
+    - frontabs
+    - twoside
+    - singlespacing
+    - parskip
+    - deptreport
+
+title: Build a website to share and discuss software packages
+author: Qais Patankar
+---

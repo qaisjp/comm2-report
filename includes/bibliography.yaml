@@ -1,0 +1,27 @@
+---
+references:
+- id: P2
+  type: book
+  author:
+  - family: Chang
+    given: Chen-Chung
+  - family: Keisler
+    given: H. Jerome
+  issued:
+  - year: 1990
+  title: Model theory
+  publisher: North-Holland
+  edition: Third
+
+- id: P1
+  type: paper-conference
+  author:
+  - family: Arimura
+    given: Hiroki
+  issued:
+  - year: 1997
+  title: Learning acyclic first-order horn sentences from entailment
+  container-title: Proc. Of the 8th intl. Conf. On algorithmic learning theory, alt
+    ’97
+  page: 432-445
+...

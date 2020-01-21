@@ -5,16 +5,14 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: docker://thomasweise/docker-texlive-full:latest
     steps:
     - uses: actions/checkout@v1
     - name: Install pandoc
-      run: sudo apt install pandoc
-    - name: Compile LaTeX document
-      run: make project.tex
+      run: apt-get update && apt-get install -y pandoc pandoc-citeproc
     - name: Build PDF
-      uses: xu-cheng/latex-action@master
-      with:
-        root_file: project.tex
+      run: make
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
