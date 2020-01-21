@@ -1,0 +1,210 @@
+# API Design
+
+API design is inspired from GitHub's Rest API v3.
+https://developer.github.com/v3/
+
+This is a good RESTful API.
+
+Permission management
+---------------------
+
+We've decided that permissions will be granular for site administrators,
+but simple on a resource level. Original creators of a resource retain
+permanent access rights, and they can also designate additional resource
+administrators. These designated resource admins have all the same
+permissions as the creator.
+
+Authentication
+--------------
+
+Authentication is implemented as a middleware.
+
+Initially we had two middleware functions:
+
+-   `authRequired` - this is returned by the JWT library\
+    (`authMiddleware.MiddlewareFunc()`). Any route that includes this
+    middleware function requires the request to have an authenticated
+    user.
+
+-   *authMaybeRequired* - this is a function we've created that, if an
+    auth token is provided, verifies the user (via `authRequired`), and
+    otherwise sets the \"user\" context variable to *nil*.
+
+This works well when *authMaybeRequired* isn't used frequently, but we
+soon discovered that a lot of our routes included this. Some entities -
+resources, packages, gallery items --- may be in a state that means that
+they should only be accessible to resource managers and site admins.
+
+We decided to change to three middleware functions:
+
+-   *authMiddlewareFunc* - this is returned by the JWT library\
+    via *authMiddleware.MiddlewareFunc()*, as *authRequired* above
+
+-   *authMaybeRequired* - this is the same as above except it verifies
+    the user via *authMiddlewareFunc*
+
+-   *authRequired* - this is a function we've created that, if the
+    \"user\" context variable is *nil*, will abort, and send a response
+    containing:
+
+    -   the header \"*WWW-Authenticate*\" to \"*JWT
+        realm=multitheftauto.com*\",
+
+    -   the status code to *401 Status Unauthorized*, and
+
+    -   the body *{\"message\": \"You must be logged in to perform that
+        operation.\"}*
+
+Full list:
+
+-   resources - unpublished resources, suspended resources
+
+-   packages - draft packages
+
+Deletions
+---------
+
+A common approach to deleting entities in webapps (todo: add source) is
+to set an *is\_deleted* flag to *true* and simply hide the row from
+output.
+
+This is useful if we need to maintain an audit log or (considering that
+deletions are destructive) would like to undo changes.
+
+Users, however, may not approeciate a website holding onto data they've
+requested to be deleted.
+
+When deleting *resources* we can just do *delete from resources where
+resource\_id =* and let PostgreSQL cascade this via foreign keys.
+
+Doing this for general users has a few caveats:
+
+-   If a user has requested a deletion, their comments should be
+    anonymised
+
+-   If an administrator has deleted the account, the admin should decide
+    whether or not their comments should be removed too.
+
+-   What if an admin decides, post-comment-retaining-deletion, that
+    their posts should have indeed been deleted?
+
+What if an administrator wants to delete their own account? Most actions
+(like bans) have an admin user id associated, and the deletion of an
+admin account should not delete all the associated bans!
+
+Solutions here include:
+
+-   For comments and bans, allow \"author\_id\" to be nullable. Show
+    \"deleted\" in place.
+
+-   When deleting user accounts, delete all the associated data, but
+    keep the user row, and set `is_deleted` to true. We should also
+    remove all personal data.
+
+This is in line with GDPR as only PII needs to be removed. Comments do
+not fall under GDPR.
+
+Upload packages
+---------------
+
+It is possible for a user to send many `POST
+/v1/resources/:resource_id/pkg` requests, creating many blank packages.
+These will all be created a draft packages until:
+
+-   an actual file has been uploaded (and checked)
+
+-   the user publishes the package (it is no longer in a "draft" state)
+
+Once a file is uploaded by the client and is memory, we check the MIME
+type of the uploaded file. If the file is not of the "application/zip"
+MIME type, we return a "415 Unsupported Media Type" and discard the
+data.
+
+TODO THEN WE CHECK THE ZIP ITSELF IN memory
+
+Once we've verified that the zip is safe to use, we upload to a storage
+service using gocloud.dev/blob https://gocloud.dev/howto/blob.
+
+> \"Blobs are a common abstraction for storing unstructured data on
+> Cloud storage services and accessing them via HTTP. This guide shows
+> how to work with blobs in the Go CDK.\"
+
+This is useful as it is a generic backend for various file storage
+services, including support for Google Cloud Storage, Amazon S3, Azure
+Blob Service, and of course Local Storage. This makes the website
+scalable and resilient as we can rely on one of those services doing
+backups for us, and also use them to deliver stuff for us. Less
+bandwidth. But we can still use Local Storage when sysadmins are testing
+or if they would prefer to use local storage (if they do not want to pay
+for an external service)
+
+The gocloud.dev library gives us safety as it converts filenames to
+something safe. This means that we don't have to worry about malicious
+filenames when storing files locally.
+
+The filename `../test` is stored as `..\_\_0x2f\_\_test`. This is
+secure.
+
+However, gocloud allows filenames to contain forward slashes (creating a
+subfolder). Whilst we could ensure that our filename has no directory
+separators, we chose to force filenames to be stored as "pkg\$ID.zip"
+(such as pkg6.zip).
+
+This additionally means that we don't need to write code to delete old
+packages when reuploading a file (during initial package creation,
+whilst in draft state). We can just rely on gocloud.dev replacing the
+blob with the new file.
+
+We only need to delete the files when packages are deleted!
+
+When implementing this we tried to use io.Copy to copy from the input
+file to the bucket writer, but we could not do this. So, from the advice
+of
+https://stackoverflow.com/questions/39791021/how-to-read-multiple-times-from-same-io-reader
+we refactored our initial code to use io.TeeReader:
+https://golang.org/pkg/io/\#TeeReader
+
+We realised that TeeReader returns an io.Reader which does not implement
+io.ReaderAt, so in the end we just used ioutil.ReadAll to read the
+entire file into a \[\]bytes struct. This means that we don't need to
+use a io.Copy, and can produce a io.ReaderAt for the zip library using
+bytes.NewReader (which returns a bytes.Reader, which DOES implement
+io.ReaderAt).
+https://stackoverflow.com/questions/50539118/golang-unzip-response-body/50539327
+
+> TeeReader returns a Reader that writes to w what it reads from r. All
+> reads from r performed through it are matched with corresponding
+> writes to w. There is no internal buffering - the write must complete
+> before the read completes. Any error encountered while writing is
+> reported as a read error.
+
+Error handling
+--------------
+
+Initially returning errors but this is leaky. NOw we just report
+http.SttusInternalServerError and just log the error
+
+Selecting HTTP status codes
+---------------------------
+
+### 401 Unauthorized vs. 403 Forbidden
+
+We have decided to select the following status codes for the following
+scenarios:
+
+-   401: being unauthenticated for a request that requires
+    authentication
+
+-   403: being authenticated but not authorized to perform an action
+
+This might seem obvious, but the status text for *401* is *401
+Unauthorized*, despite it being for authentication and not
+authorization.
+
+Sources: (todo: citationify)
+
+-   https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
+
+-   https://httpstatuses.com/401
+
+-   https://httpstatuses.com/403
