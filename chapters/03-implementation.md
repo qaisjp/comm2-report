@@ -205,5 +205,3 @@ Sources: (todo: citationify)
 -   https://httpstatuses.com/401
 
 -   https://httpstatuses.com/403
-
-\chapter{Bibliography}

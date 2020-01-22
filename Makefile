@@ -7,5 +7,5 @@ project.pdf:
 		--include-before-body includes/acknowledgements.tex \
 		--metadata-file includes/metadata.yaml \
 		includes/bibliography.yaml \
-		chapters/01-introduction.md chapters/02-implementation.md \
+		chapters/* \
 		-o project.pdf
