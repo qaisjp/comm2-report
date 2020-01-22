@@ -5,16 +5,14 @@ long, and preferably no shorter than 20 pages. Appendices are in
 addition to this and you should place detail here which may be too much
 or not strictly necessary when reading the relevant section.
 
-Citations
----------
+# Citations
 
 Note that citations (like [-@P1] or [-@P2]) can be generated using
 `BibTeX` or by using the `thebibliography` environment. This makes sure
 that the table of contents includes an entry for the bibliography. Of
 course you may use any other method as well.
 
-Options
--------
+# Options
 
 There are various documentclass options, see the documentation. Here we
 are using an option (`bsc` or `minf`) to choose the degree type, plus:

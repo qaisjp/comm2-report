@@ -7,8 +7,7 @@ https://developer.github.com/v3/
 
 This is a good RESTful API.
 
-Permission management
----------------------
+## Permission management
 
 We've decided that permissions will be granular for site administrators,
 but simple on a resource level. Original creators of a resource retain
@@ -16,8 +15,7 @@ permanent access rights, and they can also designate additional resource
 administrators. These designated resource admins have all the same
 permissions as the creator.
 
-Authentication
---------------
+## Authentication
 
 Authentication is implemented as a middleware.
 
@@ -106,8 +104,7 @@ Solutions here include:
 This is in line with GDPR as only PII needs to be removed. Comments do
 not fall under GDPR.
 
-Upload packages
----------------
+## Upload packages
 
 It is possible for a user to send many `POST
 /v1/resources/:resource_id/pkg` requests, creating many blank packages.
@@ -180,14 +177,12 @@ https://stackoverflow.com/questions/50539118/golang-unzip-response-body/50539327
 > before the read completes. Any error encountered while writing is
 > reported as a read error.
 
-Error handling
---------------
+## Error handling
 
 Initially returning errors but this is leaky. NOw we just report
 http.SttusInternalServerError and just log the error
 
-Selecting HTTP status codes
----------------------------
+## Selecting HTTP status codes
 
 ### 401 Unauthorized vs. 403 Forbidden
 
