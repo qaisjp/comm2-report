@@ -6,11 +6,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://thomasweise/docker-texlive-full:latest
+      image: docker://haskell:latest
     steps:
     - uses: actions/checkout@v1
     - name: Install pandoc
-      run: apt-get update && apt-get install -y pandoc pandoc-crossref pandoc-citeproc
+      run: cabal new-update && cabal new-install pandoc pandoc-citeproc && cabal new-install pandoc-crossref
     - name: Build PDF
       run: make
     - name: copy file via ssh password
