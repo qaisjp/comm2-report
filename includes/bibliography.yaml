@@ -24,4 +24,12 @@ references:
   container-title: Proc. Of the 8th intl. Conf. On algorithmic learning theory, alt
     ’97
   page: 432-445
+
+- id: comm1
+  type: webpage
+  author:
+  - family: Bobrov
+    given: Stanislav
+  title: Multi Theft Auto | Community
+  url: https://community.mtasa.com
 ...

@@ -1,4 +1,4 @@
-\chapter{Implementation}
+\chapter{Design \& Implementation}
 
 # API Design
 
