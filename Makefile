@@ -2,6 +2,7 @@
 
 project.pdf:
 	pandoc \
+		--filter pandoc-crossref \
 		--filter pandoc-citeproc \
 		--include-in-header includes/include.tex \
 		--include-before-body includes/acknowledgements.tex \
