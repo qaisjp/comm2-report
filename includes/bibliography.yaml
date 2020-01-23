@@ -3,31 +3,6 @@
 # http://docs.citationstyles.org/en/stable/specification.html
 
 references:
-- id: P2
-  type: book
-  author:
-  - family: Chang
-    given: Chen-Chung
-  - family: Keisler
-    given: H. Jerome
-  issued:
-  - year: 1990
-  title: Model theory
-  publisher: North-Holland
-  edition: Third
-
-- id: P1
-  type: paper-conference
-  author:
-  - family: Arimura
-    given: Hiroki
-  issued:
-  - year: 1997
-  title: Learning acyclic first-order horn sentences from entailment
-  container-title: Proc. Of the 8th intl. Conf. On algorithmic learning theory, alt
-    ’97
-  page: 432-445
-
 - id: comm1
   type: webpage
   author:
@@ -57,12 +32,13 @@ references:
   author:
     - family: Evers
       given: Steven
-  title: Should a website use its own public API? - Software Engineering Stack Exchange
+  title: Should a website use its own public API?
+  publisher: Software Engineering Stack Exchange
   url: https://softwareengineering.stackexchange.com/a/148561/72872
   issued:
     - year: 2012
-      month: 14
-      day: 5
+      month: 5
+      day: 14
   accessed:
     - year: 2020
       month: 1
@@ -72,7 +48,8 @@ references:
   type: webpage
   author:
     - given: Dante
-  title: architecture - How my website should use its own API? - Software Engineering Stack Exchange
+  title: architecture - How my website should use its own API?
+  publisher: Software Engineering Stack Exchange
   url: https://softwareengineering.stackexchange.com/a/200569/72872
   issued:
     - year: 2013
