@@ -10,3 +10,4 @@ project.pdf:
 		includes/bibliography.yaml \
 		chapters/* \
 		-o project.pdf
+	scp project.pdf hgs:uploads/project.pdf &
