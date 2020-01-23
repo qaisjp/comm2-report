@@ -1,4 +1,7 @@
 ---
+# https://github.com/andras-simonyi/citeproc-el/wiki/BibLaTeX-CSL-mapping
+# http://docs.citationstyles.org/en/stable/specification.html
+
 references:
 - id: P2
   type: book
