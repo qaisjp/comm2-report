@@ -35,4 +35,52 @@ references:
     given: Stanislav
   title: Multi Theft Auto | Community
   url: https://community.mtasa.com
+
+- id: ownapi-1
+  type: webpage
+  author:
+    - family: Virkkunen
+      given: Matti
+  title: api design - Is it good practice for a website to use its own API? - Stack Overflow
+  url: https://stackoverflow.com/a/3590574/1517394
+  issued:
+    - year: 2010
+      month: 8
+      day: 28
+  accessed:
+    - year: 2020
+      month: 1
+      day: 23
+
+- id: ownapi-2
+  type: webpage
+  author:
+    - family: Evers
+      given: Steven
+  title: Should a website use its own public API? - Software Engineering Stack Exchange
+  url: https://softwareengineering.stackexchange.com/a/148561/72872
+  issued:
+    - year: 2012
+      month: 14
+      day: 5
+  accessed:
+    - year: 2020
+      month: 1
+      day: 23
+
+- id: ownapi-3
+  type: webpage
+  author:
+    - given: Dante
+  title: architecture - How my website should use its own API? - Software Engineering Stack Exchange
+  url: https://softwareengineering.stackexchange.com/a/200569/72872
+  issued:
+    - year: 2013
+      month: 6
+      day: 4
+  accessed:
+    - year: 2020
+      month: 1
+      day: 23
+
 ...

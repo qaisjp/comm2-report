@@ -5,7 +5,27 @@
 API design is inspired from GitHub's Rest API v3.
 https://developer.github.com/v3/
 
-This is a good RESTful API.
+This is a good RESTful API, however it is not the API that the GitHub website itself uses.
+
+Our progressive webapp uses its own _public_ API (rooted at `/v1/`) wherever possible (this is known as "dogfooding"), but we predict that
+certain pages may take a while to load if multiple requests are involved. One example of such a page would be the a user's profile, where
+one request would be `/v1/users?username=qaisjp&exact=1` to find the user by username and get their user information and
+then `/v1/users/1/resources` to list their resources.
+
+In response to whether a website use its own public API, Evers says that one "should not be updating the API frequently", that they should
+"spend the time to architect and proof out an API that will stay around for a while"
+and that "dogfooding in this way will enforce [this]" [-@ownapi-2].
+
+Finally, Dante also says "Unless the performance overhead of using the web service is an issue, you should definitely use your public API.
+This will help you get a consistent behavior between your application and the consumers. It will also avoid code duplication [...]" [-@ownapi-3]
+
+Based on this, we have chosen to also make use of _private_ internal endpoints. This will allow us to
+"make data access more performant by using the database directly instead of doing extra requests" [@ownapi-1].
+These internal endpoints live at `/_/` instead of the regular `/v1/` prefix, discouraging those that reverse engineer our webapp from building
+software using these endpoints.
+
+<!-- other links:
+- https://softwareengineering.stackexchange.com/questions/332864/fully-api-based-website-is-it-a-good-idea -->
 
 ## Permission management
 
