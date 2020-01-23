@@ -2,10 +2,24 @@
 
 # API Design
 
+We evaluated existing APIs and decided to adopt a REST architectural style in designing our API.
+
+## Existing APIs
+
+### GitHub
+
 API design is inspired from GitHub's Rest API v3.
 https://developer.github.com/v3/
 
+GitHub also have a GraphQL API (v4) which is pretty damn good.
+
 This is a good RESTful API, however it is not the API that the GitHub website itself uses.
+
+## Facebook
+
+## Twitter
+
+## Our webapp
 
 Our progressive webapp uses its own _public_ API (rooted at `/v1/`) wherever possible (this is known as "dogfooding"), but we predict that
 certain pages may take a while to load if multiple requests are involved. One example of such a page would be the a user's profile, where
