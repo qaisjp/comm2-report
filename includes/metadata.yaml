@@ -2,7 +2,6 @@
 toc: true
 numbersections: true
 bibliography: true
-include-after: \bibliographystyle{plain}
 
 # For pandoc-crossref
 linkReferences: true
