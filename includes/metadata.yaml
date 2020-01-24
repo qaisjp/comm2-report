@@ -18,7 +18,7 @@ documentclass: infthesis
 classoption:
     - bsc
     - frontabs
-    - twoside
+    - draft
     - singlespacing
     - parskip
     - deptreport
