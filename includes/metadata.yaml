@@ -9,9 +9,14 @@ toc: true
 numbersections: true
 bibliography: true
 link-citations: true
+secnumdepth: 2
 
 # For pandoc-crossref
 linkReferences: true
+# numberSections: true
+# chapters: true
+# chaptersDepth: 0
+# sectionsDepth: 2
 
 # Settings for infthesis class
 documentclass: infthesis
