@@ -1,1 +1,2 @@
-\chapter{Bibliography}
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
