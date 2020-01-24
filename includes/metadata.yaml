@@ -23,7 +23,7 @@ documentclass: infthesis
 classoption:
     - bsc
     - frontabs
-    - draft
+    - draft # disable me when fiddling with config, or when done
     - singlespacing
     - parskip
     - deptreport
