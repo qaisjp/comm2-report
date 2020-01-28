@@ -25,7 +25,7 @@ documentclass: infthesis
 classoption:
     - bsc # this can be: phd, mphil, msc, mscres, bsc, minf
     - frontabs
-    - draft # disable me when fiddling with config, or when done
+    # - draft # disable me when fiddling with config, or when done
     - singlespacing
     - parskip
     - deptreport
