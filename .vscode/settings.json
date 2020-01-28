@@ -1,0 +1,15 @@
+{
+    "spellright.language": [
+        "en_GB"
+    ],
+    "spellright.documentTypes": [
+        "latex",
+        "plaintext",
+        "markdown"
+    ],
+    "spellright.groupDictionaries": false,
+    "spellright.ignoreRegExps": [
+        "/{#.*?}/g", // references that start with `{#` and end with `}`, like {#sec: xxx}
+        "/\\[\\^.*?\\]/g", // footnotes that start with `[^` and end with `]`
+    ]
+}
