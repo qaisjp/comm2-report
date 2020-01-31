@@ -8,6 +8,6 @@ project.pdf:
 		--include-before-body includes/before-body.tex \
 		--metadata-file includes/metadata.yaml \
 		--bibliography includes/bibliography.yaml \
-		chapters/* \
+		chapters/**/*.md \
 		-o project.pdf
 	scp project.pdf hgs:uploads/project.pdf &
