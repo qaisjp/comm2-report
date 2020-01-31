@@ -17,12 +17,12 @@ Motivation
 - Chapter 2 discusses and analyses the existing platform, existing package management websites (software repositories), and existing API-driven websites.
 - Chapter 3 explains and discusses initial project setup and the initial (design) decisions that went into building MTA Hub
 - Chapter 4 explores the challenges in implementing MTA Hub, discusses further design decisions, and explains how features were introduced.
-- Chapter 5 evaluates the platform
+- Chapter 5 evaluates the platform in terms of speed, whether it completes the requirements, and summarises user feedback
 - Chapter 6 concludes the work completed and outlines potential future extensions
 
 # Terminology
 
-Terminology throughout this report is chosen carefully as to not be ambiguous. These terms may not apply when referring to other systems. These terms also describe the stakeholders.
+The terminology used throughout this report has been chosen carefully as to not be ambiguous, but may not apply when referring to other systems. These terms also describe the stakeholders.
 
 - `resource`: a collection of assets (scripts, images, models, audio files) — "partly equivalent to a program running in an operating system" [^what-is-a-resource]
 - `package`: a particular version of a resource, when differentiating between versions is important

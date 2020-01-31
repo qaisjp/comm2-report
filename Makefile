@@ -7,7 +7,7 @@ project.pdf:
 		--include-in-header includes/header.tex \
 		--include-before-body includes/before-body.tex \
 		--metadata-file includes/metadata.yaml \
-		includes/bibliography.yaml \
+		--bibliography includes/bibliography.yaml \
 		chapters/* \
 		-o project.pdf
 	scp project.pdf hgs:uploads/project.pdf &

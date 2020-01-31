@@ -3,13 +3,36 @@
 # http://docs.citationstyles.org/en/stable/specification.html
 
 references:
-- id: comm1
+- id: okta-authentication-vs-authorisation
   type: webpage
+  title: Authentication vs. Authorization
+  publisher: Okta
+  author: Okta
+  url: https://www.okta.com/identity-101/authentication-vs-authorization/
+  accessed:
+    - year: 2020
+      month: 1
+      day: 28
+  issued:
+    - year: 2018
+      month: 10
+      day: 15
+
+- id: understanding-403-forbidden
+  type: webpage
+  title: Understanding 403 Forbidden
   author:
-  - family: Bobrov
-    given: Stanislav
-  title: Multi Theft Auto | Community
-  url: https://community.mtasa.com
+    - family: Irvine
+      given: Daniel
+  accessed:
+    - year: 2020
+      month: 1
+      day: 28
+  issued:
+    - year: 2011
+      month: 7
+      day: 18
+  url: https://web.archive.org/web/20190704233547/http://www.dirv.me/blog/2011/07/18/understanding-403-forbidden/index.html
 
 - id: ownapi-1
   type: webpage
