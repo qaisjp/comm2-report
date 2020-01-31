@@ -1,5 +1,3 @@
-\chapter{Implementation}
-
 # Deployment {#sec:deployment}
 
 Deployment is an important part of creating a web platform — merely building an application is insufficient, it should be easy to deploy locally (for development) as well as to deploy in production. A web application that is difficult to deploy has the following issues:
