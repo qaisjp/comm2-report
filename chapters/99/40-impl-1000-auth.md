@@ -1,6 +1,6 @@
 \chapter{Implementation}
 
-## Authentication
+# Authentication
 
 Authentication is implemented as a middleware.
 
