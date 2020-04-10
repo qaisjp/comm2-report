@@ -20,7 +20,7 @@ Motivation
 - Chapter 5 evaluates the platform in terms of speed, whether it satisfies the non-functional requirements, and summarises user feedback.
 - Chapter 6 concludes the work completed and outlines potential future extensions.
 
-# Terminology
+# Terminology {#sec:terminology}
 
 The terminology used throughout this report has been chosen carefully as to not be ambiguous, but may not apply when referring to other systems.
 
