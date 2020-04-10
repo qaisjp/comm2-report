@@ -22,18 +22,28 @@ Motivation
 
 # Terminology
 
-The terminology used throughout this report has been chosen carefully as to not be ambiguous, but may not apply when referring to other systems. These terms also describe the stakeholders.
+The terminology used throughout this report has been chosen carefully as to not be ambiguous, but may not apply when referring to other systems.
 
-- `resource`: a collection of assets (scripts, images, models, audio files) — "partly equivalent to a program running in an operating system" [^what-is-a-resource]
+- `resource`: a collection of assets (scripts, images, models, audio files) — "partly equivalent to a program running in an operating system" [@ResourcesMultiTheft]
+
+    A resource can be of the following types [@lyonsedwinMetaXmlMulti2008]:
+
+    - `gamemode` - provides core game mechanics
+    - `map` - a collection of game world objects, allowing for unique twists on the core mechanics provided by gamemodes
+    - `script` - may provide extra features that interact gamemodes
+    - `misc` - utility resources
 - `package`: a particular version of a resource, when differentiating between versions is important
-- (of the platform)
-    - `maintainer`: someone who contributes code to this project (does not necessarily have special permissions)
-    - `sysadmin`: a super administrator that deploys and has full access to the platform
-    - `moderator` or `reviewer`: someone that issues bans or reviews content, keeping the platform safe
 - `server`: an instance of the game server (which can run many resources)
-- `scripter`: someone that authors _resources_
-- `mapper`: someone that authors _resources_ of the `map` type
-- `server owner`: a user that manages a `server` but is not necessarily technical (does not have to be a `scripter` or `mapper`)
-- `player`: a user that connects to a `server` and enjoys experiences offered by `resources`
 
-[^what-is-a-resource]: https://wiki.multitheftauto.com/wiki/Resources
+These terms describe the stakeholders:
+
+- maintainers:
+    - `moderator`: someone that issues bans or reviews content, keeping the platform safe
+    - `administrator`: a moderator that also manages user permissions
+    - `sysadmin`: an administrator that deploys and has full access to the platform
+    - `contributor`: someone who contributes code to this project (does not necessarily have special permissions)
+- users:
+    - `scripter`: someone that authors _resources_
+    - `mapper`: someone that primarily creates _resources_ of the _map_ type
+    - `server owner`: a user that manages a `server` but is not necessarily technical (does not have to be a `scripter` or `mapper`)
+    - `player`: a user that connects to a `server` and interacts with _resources_
