@@ -34,7 +34,7 @@ We decided to change to three middleware functions:
     -   the status code to `401 Status Unauthorized`, and
     -   the body `{"message": "You must be logged in to perform that operation."}`
 
-\textcolor{blue}{DESIGN... =} Full list of entities that should only be accessible by admins. TODO: this list is probably not necessary. Although perhaps we can actually put it in the conclusion or evaluation?
+All authenticated administrators should be able to access the following entities:
 
 -   resources - unpublished resources, suspended resources
 -   packages - draft packages
