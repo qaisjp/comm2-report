@@ -1,4 +1,6 @@
 \chapter{Introduction}
+\pagenumbering{arabic}
+\setcounter{page}{1}
 
 <!--
 It should be 30 to 60 pages long, and preferably no shorter than 20 pages.
