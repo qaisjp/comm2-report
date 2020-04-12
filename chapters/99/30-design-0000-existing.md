@@ -13,24 +13,33 @@ We discuss a number of the following features for each site:
 - **PWA.** Is the website a progressive web application?
 - **Naming / scoping.** How does the system handle name clashes?
 
-Decisions throughout this report will call back to these discussions.
-
 ## GitHub (github.com)
 
-GitHub has two main APIs, [REST API v3] and [GraphQL API v4], in addition to supporting "[webhooks](https://developer.github.com/webhooks/)".
+GitHub has two main APIs, REST API v3 and GraphQL API v4, and also supports push messages via "webhooks".[^GitHubAPILinks]
 
 Their documentation describes why GitHub uses GraphQL:
 
 > "GitHub chose GraphQL for our API v4 because it offers significantly more flexibility for our integrators. The ability to define precisely the data you want—and only the data you want—is a powerful advantage over the REST API v3 endpoints. GraphQL lets you replace multiple REST requests with a single call to fetch the data you specify." [@GitHubGraphQLAPI]
 
-[REST API v3]: https://developer.github.com/v3/
-[GraphQL API v4]: https://developer.github.com/v4/
+[^GitHubAPILinks]: Detailed information on these APIs can be found at https://developer.github.com/v3/, https://developer.github.com/v4/ and https://developer.github.com/webhooks/
 
-GitHub also provides GitHub Package Registry, as well as an "Actions Marketplace".
+This has clear development and performance benefits:
+
+- we can "dogfood" more aggressively (dogfooding is discussed further in [@sec:design-api])
+- a single request can be called for all the data needed, which results in faster load times for the user
+- less _collaborator_ time needs to be spent creating endpoints to provide bulk data
+
+Despite GraphQL being very powerful, we have adopted to build a simpler REST-based API. This is because GraphQL is quite difficult to setup and prototype with, especially when fleshing out a brand new API.
 
 ## npm (npmjs.com)
 
-Example page https://www.npmjs.com/package/leftpad
+npm is the package manager for Node. npmjs.com is a progressive web application built using React, a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
+
+Npm does not have a public API, so we navigated through several pages on the website and analysed the network requests that were made.
+
+When the user visits `https://www.npmjs.com/package/leftpad` the page response simply contains an application bundle - a set of scripts - so that the web application can be rendered in-browser:
+
+> "The page is fundamentally empty, but it includes a couple JS scripts. Once the browser downloads and parses those scripts, React will build up a picture of what the page should look like, and inject a bunch of DOM nodes to make it so. This is known as _client-side rendering_, since all the rendering happens on the client (the user's browser)." [@PerilsRehydration]
 
 Does not use its own public API, but actually uses GitHub's API to fetch and display the number of open issues and pull requests.
 

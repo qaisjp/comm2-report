@@ -10,7 +10,7 @@ talk about passwords:
 - https://www.chromium.org/developers/design-documents/create-amazing-password-forms
 - https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands
 
-# API Design
+# API Design {#sec:design-api}
 
 In [@sec:bg-api-analysis] we evaluated a number of existing APIs; based on that information we decided to adopt a REST architectural
 style in designing our API. Additionally, the APIs in [@sec:bg-api-analysis] heavily inspired the design of our API.
