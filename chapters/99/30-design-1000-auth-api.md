@@ -1,5 +1,3 @@
-\chapter{Design}
-
 talk about progressive web applications:
 
 - https://love2dev.com/blog/pwa-spa/

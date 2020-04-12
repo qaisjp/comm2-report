@@ -1,3 +1,5 @@
+\chapter{Design}
+
 # Successful websites and their APIs {#sec:bg-api-analysis}
 
 In this section we analyse a number of successful websites and their APIs. Some of these are software repositories, but not necessarily all of them.
@@ -26,17 +28,13 @@ Their documentation describes why GitHub uses GraphQL:
 
 GitHub also provides GitHub Package Registry, as well as an "Actions Marketplace".
 
-## gitlab.com
-
-## bitbucket.org
-
-## npmjs.com
+## npm (npmjs.com)
 
 Example page https://www.npmjs.com/package/leftpad
 
 Does not use its own public API, but actually uses GitHub's API to fetch and display the number of open issues and pull requests.
 
-## crates.io
+## Rust Package Registry (crates.io)
 
 crates.io is a progressive web application (or a single page application? TODO) that uses the [Ember.js](https://emberjs.com/) web framework.
 
@@ -46,24 +44,45 @@ Statistics at https://crates.io/api/v1/summary
 
 Search query for "lastfm" - https://crates.io/api/v1/crates?page=1&per_page=10&q=lastfm - we can talk about pagination here too.
 
-TODO Clicking on the "rustfm" package triggers the following calls:
+Clicking on the "rustfm" package on the search results for "lastfm" triggers several API calls, listed in [@tbl:cratespublend]. The user is presented with a "Loading..." indicator blocking the entire page whilst all this information is being fetched, despite the user not necessarily needing to know all this information.
 
-- https://crates.io/api/v1/crates/rustfm
-- https://docs.rs/crate/rustfm/0.1.2/builds.json (external?)
-- https://crates.io/api/v1/crates/rustfm/versions
-- https://crates.io/api/v1/crates/rustfm/0.1.2/authors
-- https://crates.io/api/v1/crates/rustfm/owner_user
-- https://crates.io/api/v1/crates/rustfm/owner_team
-- https://crates.io/api/v1/crates/rustfm/0.1.2/dependencies
-- https://crates.io/api/v1/crates/rustfm/downloads
+| Path | Description |
+|-----|-----------|
+| `/` | Crate metadata, statistics, links and versions |
+| `/versions` | Version metadata and stats (the same data is included above) |
+| `/0.1.2/authors` | Author names and email addresses |
+| `/owner_user` | Profile data for the users that own the crate |
+| `/owner_team` | Profile data for the teams that own the crate |
+| `/0.1.2/dependencies` | ID and versions of the crate's dependencies |
+| `/downloads` | Statistics about individual download entries |
 
-Many requests! Takes a second or so for data to appear and there's sometimes a pop-in effect. This is because requests are not clumped together.
+: Public endpoints on `https://crates.io/api/v1/crates/rustfm` {#tbl:crates-publend}
 
-There are also some private endpoints:
+This pop-in effect results in poor user experience, and can be combat in one or more of the following ways:
 
-- `DELETE https://crates.io/api/private/session` to log out of the website
-- `GET /api/private/session/begin` to start logging in (using GitHub Oauth)
-- `GET /api/private/session/authorize?code=<code>&state=<state>` to attempt a login using GitHub OAuth, which returns a JSON
+1. Using a single endpoint to return all the data necessary.
+2. Rendering data as son as it is available, and showing a seamless loading indicator for information that is still being fetched.
+3. Lazy loading statistics - only fetching this data when the user scrolls down to the statistics section.
+4. Enabling HTTP/2 for the APi, so that requests can be multiplexed into a single connection.
+
+---------------------------------------------------------------------------
+Method   Path               Description
+-------- ------------------ -----------------------------------------------
+`DELETE` `/`                Logout the authenticated user
+
+`GET`    `/begin`           Initiate authentication process using GitHub OAuth
+
+`GET`    ```                Complete authentication process using GitHub OAuth,
+         /authorize?        returning session information
+            code=<code>&
+            state=<state>
+         ```
+
+---------------------------------------------------------------------------
+
+: Private endpoints on `https://crates.io/api/private/session` {#tbl:crates-privend}
+
+[Table @tbl:creates-privend] shows a number of private endpoints.
 
 ## pypi.org
 
