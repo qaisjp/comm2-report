@@ -56,7 +56,8 @@ type PublicUserInfo struct {
 ## `AuthenticatedUser`
 
 ```go
-// AuthenticatedUser represents the fields available to an authenticated user
+// AuthenticatedUser represents the fields available
+// to an authenticated user
 type AuthenticatedUser struct {
 	PublicUserInfo
 	Level int `json:"level"`
