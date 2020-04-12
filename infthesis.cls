@@ -688,9 +688,3 @@ Computer Science}}
 %%
 %% EOF: infthesis.cls
 %%
-
-\AtBeginDocument{
-$for(header-includes)$
-$header-includes$
-$endfor$
-}
