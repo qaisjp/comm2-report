@@ -51,4 +51,3 @@ Most resource names follow a scheme, incrementing sequentially from `racemap1` t
 **Summary**
 
 The analysis above suggests that "resource squatting" is a problem that needs to be resolved. To solve this problem we will scope resources to individual user accounts. This also makes it easier for scripters to upload resources as they will not need to choose a globally unique resource name, and they can just use the resource name that they used during development.
-

@@ -31,6 +31,10 @@ This has clear development and performance benefits:
 
 Despite GraphQL being very powerful, we have adopted to build a simpler REST-based API. This is because GraphQL is quite difficult to setup and prototype with, especially when fleshing out a brand new API.
 
+Talk about scoping
+
+talk about primer grid - responsiveness. bootstrap has this. the reason we chose primer is because it's the backbone of github, and our service follows a similar format to github, so we have all the necessity taxonomies available. also bootstrap 4 requires jquery (explain why jquery is bad and unnecessary today), and that we're waiting for bootstrap 5 which does not use jquery.
+
 ## npm (npmjs.com)
 
 npm is the package manager for Node. npmjs.com is a progressive web application built using React, a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
