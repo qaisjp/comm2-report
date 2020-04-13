@@ -1,7 +1,7 @@
 
 # Preventing resource squatting
 
-Resources in comm1 are scoped to a global level. This means that there is no way to upload a resource if there already exists a resource with the same name.
+Resources in the existing system are scoped to a global level. This means that there is no way to upload a resource if there already exists a resource with the same name.
 
 We think this makes the site susceptible to "squatting", so we checked to see if there are any user accounts that appear to squat a large number of resources.
 

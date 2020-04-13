@@ -1,7 +1,6 @@
 \chapter{Background}
 
 The existing platform^[https://community.mtasa.com] was written for the MTA:SA community in 2006 by Stanislav Bobrov and other contributors.
-Throughout the rest of this report, the existing work will be referred to as _comm1_, short for "community 1.0".
 
 # Navigation
 
