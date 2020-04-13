@@ -2,9 +2,11 @@
 
 # Overview
 
-I achieved some of the project goals by creating a secure web application that allows users to share, discover and download resources.
+We achieved some of the project goals by creating a secure web application that allows users to share, discover and download resources.
 
-Yes, more efficient, better infrastructure, more secure. Easier to develop.
+We made the web application more efficient, be built using better infrastructure, and take into account secure practices. It is also much easier for contributors to develop with.
+
+
 
 
 # Extensions
