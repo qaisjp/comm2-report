@@ -1,5 +1,5 @@
 
-# Preventing resource squatting
+# Preventing resource squatting {#sec:squatting}
 
 Resources in the existing system are scoped to a global level. This means that there is no way to upload a resource if there already exists a resource with the same name.
 

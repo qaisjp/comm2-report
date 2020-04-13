@@ -2,7 +2,7 @@
 
 # Testing
 
-The technologies used in this project were carefully chosen to support automated testing. The backend supports testing via Go's inbuilt testing infrastructure (`go test`). Every component on the frontend has a test file,  automatically generated via the `ng generate` command, ready for manual expansion by contributors.
+The technologies used in this project were carefully chosen to support automated testing. The backend supports testing via Go's inbuilt testing infrastructure (`go test`). Every component on the frontend has a test file, automatically generated via the `ng generate` command, ready for manual expansion by contributors.
 
 # Stakeholders
 

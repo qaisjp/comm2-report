@@ -11,7 +11,7 @@ We discuss a number of the following features for each site:
     - **Use of public APIs.** Does it use its own public API?
 - **Public access?** Does the API and/or website allow public access?
 - **PWA.** Is the website a progressive web application?
-- **Naming / scoping.** How does the system handle name clashes?
+- **Naming.** How does the system handle name clashes?
 
 ## npm (npmjs.com)
 
@@ -114,6 +114,10 @@ This has clear development and performance benefits:
 
 Despite GraphQL being very powerful, we have adopted to build a simpler REST-based API. This is because GraphQL is quite difficult to setup and prototype with, especially when fleshing out a brand new API.
 
-Talk about scoping
+**Naming**
 
-talk about primer grid - responsiveness. bootstrap has this. the reason we chose primer is because it's the backbone of github, and our service follows a similar format to github, so we have all the necessity taxonomies available. also bootstrap 4 requires jquery (explain why jquery is bad and unnecessary today), and that we're waiting for bootstrap 5 which does not use jquery.
+All repositories on GitHub are scoped to a user account or organisation - this means that two users can create a repository with the same name.
+
+Their URL design follows `https://github.com{/owner}{/repo}`, replacing `{/owner}` with the username or the owner, and `{/repo}` as the repository name. This has the benefit of making it clear to all users, at a glance, who owns the repository.
+
+We have chosen to follow a similar model in MTA Hub, as discussed in [@sec:squatting].
