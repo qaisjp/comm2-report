@@ -13,28 +13,6 @@ We discuss a number of the following features for each site:
 - **PWA.** Is the website a progressive web application?
 - **Naming / scoping.** How does the system handle name clashes?
 
-## GitHub (github.com)
-
-GitHub has two main APIs, REST API v3 and GraphQL API v4, and also supports push messages via "webhooks".[^GitHubAPILinks]
-
-Their documentation describes why GitHub uses GraphQL:
-
-> "GitHub chose GraphQL for our API v4 because it offers significantly more flexibility for our integrators. The ability to define precisely the data you want—and only the data you want—is a powerful advantage over the REST API v3 endpoints. GraphQL lets you replace multiple REST requests with a single call to fetch the data you specify." [@GitHubGraphQLAPI]
-
-[^GitHubAPILinks]: Detailed information on these APIs can be found at https://developer.github.com/v3/, https://developer.github.com/v4/ and https://developer.github.com/webhooks/
-
-This has clear development and performance benefits:
-
-- we can "dogfood" more aggressively (dogfooding is discussed further in [@sec:design-api])
-- a single request can be called for all the data needed, which results in faster load times for the user
-- less _collaborator_ time needs to be spent creating endpoints to provide bulk data
-
-Despite GraphQL being very powerful, we have adopted to build a simpler REST-based API. This is because GraphQL is quite difficult to setup and prototype with, especially when fleshing out a brand new API.
-
-Talk about scoping
-
-talk about primer grid - responsiveness. bootstrap has this. the reason we chose primer is because it's the backbone of github, and our service follows a similar format to github, so we have all the necessity taxonomies available. also bootstrap 4 requires jquery (explain why jquery is bad and unnecessary today), and that we're waiting for bootstrap 5 which does not use jquery.
-
 ## npm (npmjs.com)
 
 npm is the package manager for Node. npmjs.com is a progressive web application built using React, a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
@@ -116,3 +94,26 @@ JSON endpoints include:
 - retrieving metadata and other info about an individual project - https://warehouse.readthedocs.io/api-reference/stats/#get--stats-
 - retrieving metadata and other info about a specific version of an individual project - https://warehouse.readthedocs.io/api-reference/json/#get--pypi--project_name---version--json
 - retrieving stats: total size of all packages, and size of top packages - https://warehouse.readthedocs.io/api-reference/stats/#get--stats-
+
+
+## GitHub (github.com)
+
+GitHub has two main APIs, REST API v3 and GraphQL API v4, and also supports push messages via "webhooks".[^GitHubAPILinks]
+
+Their documentation describes why GitHub uses GraphQL:
+
+> "GitHub chose GraphQL for our API v4 because it offers significantly more flexibility for our integrators. The ability to define precisely the data you want—and only the data you want—is a powerful advantage over the REST API v3 endpoints. GraphQL lets you replace multiple REST requests with a single call to fetch the data you specify." [@GitHubGraphQLAPI]
+
+[^GitHubAPILinks]: Detailed information on these APIs can be found at https://developer.github.com/v3/, https://developer.github.com/v4/ and https://developer.github.com/webhooks/
+
+This has clear development and performance benefits:
+
+- we can "dogfood" more aggressively (dogfooding is discussed further in [@sec:design-api])
+- a single request can be called for all the data needed, which results in faster load times for the user
+- less _contributor_ time needs to be spent creating endpoints to provide bulk data
+
+Despite GraphQL being very powerful, we have adopted to build a simpler REST-based API. This is because GraphQL is quite difficult to setup and prototype with, especially when fleshing out a brand new API.
+
+Talk about scoping
+
+talk about primer grid - responsiveness. bootstrap has this. the reason we chose primer is because it's the backbone of github, and our service follows a similar format to github, so we have all the necessity taxonomies available. also bootstrap 4 requires jquery (explain why jquery is bad and unnecessary today), and that we're waiting for bootstrap 5 which does not use jquery.

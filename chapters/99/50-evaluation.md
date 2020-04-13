@@ -6,7 +6,42 @@ The technologies used in this project were carefully chosen to support automated
 
 # Stakeholders
 
-The new platform currently only caters to scripters and does not take into account enough of the needs of some of the other stakeholders. TODO.
+**Administrators and Moderators**
+
+Both these stakeholders currently have equal access across the entire system, and have implicit "owner" status over every resource. This means they can see all resources, public and private.
+
+Further work to be done here includes:
+
+- limiting permanent destructive operations to administrators
+- implementing a warning and ban system
+- introducing a resource approval process
+
+**System administrator (sysadmin)**
+
+Sysadmins can quickly deploy the website using Docker and database migrations can easily be applied via the command line.
+
+**Contributors**
+
+Contributors can quickly deploy a local version of the website using Docker.
+
+Database migrations can easily be applied but if multiple contributors submit pull requests, a conflict will arise that needs to be handled manually. This may not be in the form of a _Git_ merge conflict, meaning that extra care needs to be taken when reviewing pull requests. This problem could be solved via a GitHub Action.
+
+The backend follows Go's conventions including established commenting practices, meaning that the `go doc` tool can be used to quickly generate documentation from the code. Since the code will be open source, any contributor would be able to access this documentation online via the `godoc.org` service.
+
+The frontend follows a standard directory structure and supports Angular's `ng` command line tool, so it is easy to generate new modules, components, services and directives.
+
+**Scripter**
+
+**Server owner**
+
+Servers owners have the ability to "Follow" authors, but this currently does not have any useful effect.
+
+Servers owners are able to create special accounts for their server and host their private resources on the website, and add their developers as collaborators. However, they would benefit from an additional "resource lists" feature, so that other users' resources can be included in their personal lists.
+
+This would behave similar to a playlist on YouTube, where lists could be made private, unlisted or public; and private resources in the list would be hidden from those who do not have read access, but public resources in the list _would_ still be accessible. In the future, servers could automatically sync resources from these lists.
+
+
+
 
 # User Experience
 

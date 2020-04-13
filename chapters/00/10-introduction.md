@@ -42,10 +42,8 @@ These terms describe the stakeholders:
 - maintainers:
     - `moderator`: someone that issues bans or reviews content, keeping the platform safe
     - `administrator`: a moderator that also manages user permissions
-    - `sysadmin`: an administrator that deploys and has full access to the platform
+    - `sysadmin`: system administrator, an administrator that deploys and has full access to the platform
     - `contributor`: someone who contributes code to this project (does not necessarily have special permissions)
 - users:
     - `scripter`: someone that authors _resources_
-    - `mapper`: someone that primarily creates _resources_ of the _map_ type
     - `server owner`: a user that manages a `server` but is not necessarily technical (does not have to be a `scripter` or `mapper`)
-    - `player`: a user that connects to a `server` and interacts with _resources_
