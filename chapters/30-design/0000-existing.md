@@ -1,8 +1,6 @@
 \chapter{Design}
 
-# Successful websites and their APIs {#sec:bg-api-analysis}
-
-In this section we analyse a number of successful websites and their APIs. Some of these are software repositories, but not necessarily all of them.
+# Existing software hosting websites {#sec:bg-api-analysis}
 
 We discuss a number of the following features for each site:
 
@@ -13,27 +11,25 @@ We discuss a number of the following features for each site:
 - **PWA.** Is the website a progressive web application?
 - **Naming.** How does the system handle name clashes?
 
-## npm (npmjs.com)
+## Npm Registry (npmjs.com)
 
-npm is the package manager for Node. npmjs.com is a progressive web application built using React, a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
+Npm is the package manager for Node. npmjs.com is a progressive web application built using React, which is a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
 
-Npm does not have a public API, so we navigated through several pages on the website and analysed the network requests that were made.
+The website does not have a public API, so we navigated through several pages on the website and analysed the network requests that were made.
 
 When the user visits `https://www.npmjs.com/package/leftpad` the page response simply contains an application bundle - a set of scripts - so that the web application can be rendered in-browser:
 
 > "The page is fundamentally empty, but it includes a couple JS scripts. Once the browser downloads and parses those scripts, React will build up a picture of what the page should look like, and inject a bunch of DOM nodes to make it so. This is known as _client-side rendering_, since all the rendering happens on the client (the user's browser)." [@PerilsRehydration]
 
-Does not use its own public API, but actually uses GitHub's API to fetch and display the number of open issues and pull requests.
+The web application retrieves JSON data by making a web request to the same url as in `window.location` (the browser's current page). When visiting `https://www.npmjs.com/package/leftpad`, to make the backend return a JSON response instead of a page containing the application bundle, the frontend sets the `X-Spiferack` header with `1` as a value. This is not RESTful and is non-standard -- a more appropriate solution would be to set the `Accept` header to `application/json`.
+
+Packages on npmjs.com were initially only globally scoped, making package names susceptible to conflicts. Npm version 2 introduces support for scopes, which "allows you to create a package with the same name as a package created by another user or Org without conflict". [@ScopesNpmDocumentation]
 
 ## Rust Package Registry (crates.io)
 
-crates.io is a progressive web application (or a single page application? TODO) that uses the [Ember.js](https://emberjs.com/) web framework.
+crates.io is a progressive web application that uses the [Ember.js](https://emberjs.com/) web framework. All packages are globally scoped.
 
-It uses its own public API which is available at https://crates.io/api.
-
-Statistics at https://crates.io/api/v1/summary
-
-Search query for "lastfm" - https://crates.io/api/v1/crates?page=1&per_page=10&q=lastfm - we can talk about pagination here too.
+The website uses its own RESTful public API which is available at https://crates.io/api.
 
 Clicking on the "rustfm" package on the search results for "lastfm" triggers several API calls, listed in [@tbl:cratespublend]. The user is presented with a "Loading..." indicator blocking the entire page whilst all this information is being fetched, despite the user not necessarily needing to know all this information.
 
@@ -74,27 +70,6 @@ Method   Path               Description
 : Private endpoints on `https://crates.io/api/private/session` {#tbl:crates-privend}
 
 [Table @tbl:creates-privend] shows a number of private endpoints.
-
-## pypi.org
-
-Example page https://pypi.org/project/alive-progress/
-
-Does not use its own public API. Accesses GitHub's public unauthenticated API to fetch and display statistics like number of stars, forks, and open issues / pull requests.
-
-Uses an internal API to fetch dynamic information. Each endpoint provides HTML code that is transcluded into the page to:
-
-- show the available dropdown items depending on who is logged in - https://pypi.org/_includes/current-user-indicator/
-- present persistent notifications that can be dismissed - https://pypi.org/_includes/session-notifications/
-- present contextual alerts (warnings, errors, success messages and other info) - https://pypi.org/_includes/flash-messages/
-
-The public API is https://warehouse.readthedocs.io/api-reference/ and these endpoints aren't used on the website.
-
-JSON endpoints include:
-
-- retrieving metadata and other info about an individual project - https://warehouse.readthedocs.io/api-reference/stats/#get--stats-
-- retrieving metadata and other info about a specific version of an individual project - https://warehouse.readthedocs.io/api-reference/json/#get--pypi--project_name---version--json
-- retrieving stats: total size of all packages, and size of top packages - https://warehouse.readthedocs.io/api-reference/stats/#get--stats-
-
 
 ## GitHub (github.com)
 
