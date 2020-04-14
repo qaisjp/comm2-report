@@ -1,4 +1,14 @@
-# Choosing a CSS framework
+# Web application frameworks
+
+In [@sec:bg-api-analysis] we evaluated a number of existing APIs; based on that information we have decided to adopt a REST architectural style in designing our API.
+
+We have chosen to build a progressive web application as it allows us to "deliver native-like capabilities, reliability, and installability while reaching _anyone, anywhere, on any device_ with a single codebase" [@WhatMakesGood].
+
+Progressive web applications work by building an API separately to the frontend — and this means we have to select a frontend framework. According to Ryan Donovan's _Top 10 Frameworks_ [-@Top10Frameworks], React, Angular and Vue are the top frontend frameworks. We have excluded the other frameworks from the list as they are not relevant to frontend frameworks or progressive web applications.
+
+We do not have any experience with Vue, but have worked with Angular and React before, so we did not consider Vue. Despite React being more popular than Angular [@AngularVsReact] we have chosen to work with Angular as it is "a full-fledged framework for software development, which usually does not require additional libraries" [@AngularVsReact]. This is particularly important to us as it allows us to develop rapidly and lets us focus on building the application, compared to React which "is unopinionated and leaves developers to make choices about the best way to develop" [@ReactVsAngular].
+
+# CSS frameworks
 
 We wanted to choose a CSS framework that had the following features:
 
