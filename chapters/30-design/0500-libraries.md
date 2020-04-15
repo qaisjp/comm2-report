@@ -8,6 +8,8 @@ Progressive web applications work by building an API separately to the frontend 
 
 We do not have any experience with Vue, but have worked with Angular and React before, so we did not consider Vue. Despite React being more popular than Angular [@AngularVsReact] we have chosen to work with Angular as it is "a full-fledged framework for software development, which usually does not require additional libraries" [@AngularVsReact]. This is particularly important to us as it allows us to develop rapidly and lets us focus on building the application, compared to React which "is unopinionated and leaves developers to make choices about the best way to develop" [@ReactVsAngular].
 
+Angular also has an inbuilt internationalisation library which we can use to handle pluralisation, string extraction, number formatting, and date formatting. According to Angular's guide, "_Internationalization_ is the process of designing and preparing your app to be usable in different languages" [@AngularInternationalizationI18n].
+
 # CSS frameworks
 
 We wanted to choose a CSS framework that had the following features:
@@ -24,10 +26,3 @@ For this reason, we chose Primer - GitHub's open-source design system. Since Git
 !["The `TimelineItem` component is used to display items on a vertical timeline, connected by `TimelineItem-badge` elements." [@TimelinePrimerCSS]](chapters/30-design/assets/primer-timeline.png){#fig:primer-timeline.png}
 
 !["Blankslates are for when there is a lack of content within a page or section. Use them as placeholders to tell users why something isn't there." [@BlankslatePrimerCSS]](chapters/30-design/assets/primer-blankslate.png){#fig:primer-blankslate.png}
-
-**Bootstrap**
-
-Bootstrap was originally built by Twitter
-Primer provides tools that is responsive, accessible and has a lot
-
-talk about primer grid - responsiveness. bootstrap has this. the reason we chose primer is because it's the backbone of github, and our service follows a similar format to github, so we have all the necessity taxonomies available. also bootstrap 4 requires jquery (explain why jquery is bad and unnecessary today), and that we're waiting for bootstrap 5 which does not use jquery.
