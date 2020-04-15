@@ -43,14 +43,3 @@ In the future we could also implement our own `ngxGravatar` directive to add sup
 
 - Allow us to accept either a Gravatar hash or, if the user has disabled Gravatar, a URL.
 - Increase modularity by allowing us to handle avatar sizing in a separate module without duplicating this logic everywhere, abiding by the _DRY_ software design principle - "Don't Repeat Yourself".
-
-# Caching
-
-Some data rarely changes and
-talk about caching techniques. for example, we can show old data initially (if available) and update with the newest info when it comes. cache eviction? disable for admin areas in case a decision is made on outdated info? make sure to still show feedback if a request fails, of course. but this would be covered by the default case.
-
-# HTTP Stuff, again
-
-Hyphens - The standard best practice for REST APIs is to have a hyphen, not camelcase or underscores. - This comes from Mark Masse's "REST API Design Rulebook" from Oreilly.
-
-Invalid resource zip uses status code 422 - https://httpstatuses.com/422 - Status Unprocessable Entity. This is only when checkResourceZip fails for a reason
