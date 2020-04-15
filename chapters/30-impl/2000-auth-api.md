@@ -1,16 +1,6 @@
-talk about progressive web applications:
-
-- https://love2dev.com/blog/pwa-spa/
-- https://developers.google.com/web/progressive-web-apps/
-
-# Authentication
-
-talk about passwords:
-
-- https://www.chromium.org/developers/design-documents/create-amazing-password-forms
-- https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands
-
 # API Design {#sec:design-api}
+
+Progressive web applications are typically built by building an API separately to the frontend.
 
 Our progressive webapp uses its own _public_ API (rooted at `/v1/`) wherever possible (this is known as "dogfooding"), but we predict that
 certain pages may take a while to load if multiple requests are involved. One example of such a page would be a user's profile, where
@@ -71,73 +61,6 @@ Doing this for users raises the following questions:
     - We also need to litter `if user.is_deleted then` everywhere
 
 This is in line with the General Data Protection Regulation (GDPR) as only personally identifiable information needs to be removed. Comments do not contain sensitive data, and do not fall under the GDPR.
-
-## Upload packages
-
-A user should be able to send multiple `POST /v1/resources/:resource_id/pkg` requests, each creating a blank "draft".
-
-TODO / QUESTION: which bits here are design and which bits are implementation? I suppose in Design we can do a more high level overview and then go into the nitty gritty stuff later in Implementation?
-
-\textcolor{blue}{DESIGN... =} Once a file is uploaded by the client and is memory, we check the MIME
-type of the uploaded file. If the file is not of the "application/zip"
-MIME type, we return a "415 Unsupported Media Type" and discard the
-data.
-
-TODO: then we check the ZIP in memory using a number heuristics. What are these heuristics? Considering first getting somewhat feature parity first (or explaining why certain parts won't get implemented). And then add extra features in a new chapter after it's implemented?
-
-\textcolor{blue}{MORE DESIGN... =} Once we've verified that the zip is safe to use, we upload to a storage
-service using the `gocloud.dev/blob` library (a Go package).
-
-> "Blobs are a common abstraction for storing unstructured data on
-> Cloud storage services and accessing them via HTTP. This guide shows
-> how to work with blobs in the Go CDK." [@BlobGoCDK]
-
-This is useful as it is a generic backend for various file storage
-services, including support for Google Cloud Storage, Amazon S3, Azure
-Blob Service, and of course Local Storage. This makes the website
-scalable and resilient as we can rely on one of those services doing
-backups for us, and also use them to deliver stuff for us. Less
-bandwidth. But we can still use Local Storage when sysadmins are testing
-or if they would prefer to use local storage (if they do not want to pay
-for an external service)
-
-\textcolor{blue}{IMPL... =} This library gives us safety as it converts filenames to
-something safe. This means that we don't have to worry about malicious
-filenames when storing files locally.
-
-The filename `../test` is stored as `..__0x2f__test`. This is
-secure.
-
-However, gocloud allows filenames to contain forward slashes (creating a
-subfolder). Although we could ensure that our filename has no directory
-separators, we chose to force filenames to be stored as `pkg$ID.zip`
-(such as `pkg6.zip`).
-
-This additionally means that we don't need to write code to delete old
-packages when reuploading a file (during initial package creation,
-when in draft state). We can just rely on this library replacing the
-blob with the new file.
-
-We only need to delete the files when packages are deleted!
-
-When implementing this we tried to use `io.Copy` to copy from the input
-file to the bucket writer, but we could not do this. So we refactored our
-initial code and chose to use "`io.TeeReader` to duplicate the stream" [@GoHowRead].
-
-> "TeeReader returns a Reader that writes to w what it reads from r. All
-> reads from r performed through it are matched with corresponding
-> writes to w. There is no internal buffering - the write must complete
-> before the read completes. Any error encountered while writing is
-> reported as a read error." [@IoTeeReaderGo]
-
-We realised that `TeeReader` returns an `io.Reader` which does not implement
-`io.ReaderAt`, so in the end we chose to use `ioutil.ReadAll` to read the
-entire file into a byte slice (`[]bytes`). This means that we don't need to
-use `io.Copy`, and can produce a `io.ReaderAt` for the `archive/zip` library using
-`bytes.NewReader` — this function returns a `bytes.Reader` which _does__ implement
-`io.ReaderAt`. Note that we must also "have sufficient memory for handling [the] zip file" [@GoGolangUnzip].
-
-\textcolor{blue}{DESIGN... =} Once an actual package has been uploaded the user can choose to publish it, changing the package from the "draft" state to the "pending_review" state.
 
 ## Error handling
 

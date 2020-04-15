@@ -1,4 +1,4 @@
-\chapter{Design}
+\chapter{Design \& Implementation}
 
 # Existing software hosting websites {#sec:bg-api-analysis}
 
@@ -83,7 +83,7 @@ Their documentation describes why GitHub uses GraphQL:
 
 This has clear development and performance benefits:
 
-- we can "dogfood" more aggressively (dogfooding is discussed further in [@sec:design-api])
+- we can "dogfood" more aggressively (dogfooding and its benefits are discussed in [@sec:design-api])
 - a single request can be called for all the data needed, which results in faster load times for the user
 - less _contributor_ time needs to be spent creating endpoints to provide bulk data
 

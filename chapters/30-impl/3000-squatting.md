@@ -3,9 +3,9 @@
 
 Resources in the existing system are scoped to a global level. This means that there is no way to upload a resource if there already exists a resource with the same name.
 
-We think this makes the site susceptible to "squatting", so we checked to see if there are any user accounts that appear to squat a large number of resources.
+We think this makes the site susceptible to "name-squatting". Name-squatting, a form of _cybersquatting_, is the practice of registering - and not legitimately using - popular names in the hope to mislead others, or block others from using the name for a genuine purpose.
 
-We first ran the following query to get the list of users that own at least twenty resources.
+We checked to see if there are any user accounts that appear to "squat" a large number of resource names. On the existing system's database, we first we ran the following query to get the list of users that own at least twenty resources.
 
 ```sql
 with owners as (
