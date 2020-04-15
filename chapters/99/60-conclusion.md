@@ -11,7 +11,7 @@ We made the web application more efficient, be built using better infrastructure
 
 # Extensions
 
-Further work includes implementing the changes suggested in Chapter 5 (Evaluation). More ambitious extensions to the system have been outlined below:
+Further work includes implementing the changes suggested in our Evaluation chapter. More ambitious extensions to the system have been outlined below:
 
 ## Shared authentication
 

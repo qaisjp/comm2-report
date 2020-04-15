@@ -24,10 +24,9 @@ I was able to rewrite the base functionality of the existing platform, allowing 
 # Structure
 
 - Chapter 2 discusses and analyses the existing platform - highlighting security vulnerabilities and areas where user experience could be improved.
-- Chapter 3 explains and discusses initial project setup and the initial decisions that went into building MTA Hub. This chapter also analyses existing websites relevant to MTA Hub, to help influence design decisions.
-- Chapter 4 explores the challenges in implementing MTA Hub, discusses further design decisions, and explains how features were introduced.
-- Chapter 5 evaluates the platform in terms of speed, whether it satisfies the non-functional requirements, and summarises user feedback.
-- Chapter 6 concludes the work completed and outlines potential future extensions.
+- Chapter 3 explores the challenges in designing and implementing MTA Hub, discusses further design decisions, and explains how features were introduced. This chapter also analyses existing websites relevant to MTA Hub, to help influence our design decisions.
+- Chapter 4 evaluates the platform in terms of speed, whether it satisfies the non-functional requirements, and summarises user feedback.
+- Chapter 5 concludes the work completed and outlines potential future extensions.
 
 # Terminology {#sec:terminology}
 

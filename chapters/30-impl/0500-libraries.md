@@ -23,6 +23,6 @@ We were initially drawn to Bootstrap as it satisfies all the constraints and we 
 
 For this reason, we chose Primer - GitHub's open-source design system. Since GitHub is similar to MTA Hub in that both platforms allow users to upload software archives, we could also leverage Primer's additional inbuilt components that are missing in Bootstrap, as shown in [@fig:primer-timeline] and [@fig:primer-blankslate].
 
-!["The `TimelineItem` component is used to display items on a vertical timeline, connected by `TimelineItem-badge` elements." [@TimelinePrimerCSS]](chapters/30-design/assets/primer-timeline.png){#fig:primer-timeline.png}
+!["The `TimelineItem` component is used to display items on a vertical timeline, connected by `TimelineItem-badge` elements." [@TimelinePrimerCSS]](chapters/30-impl/assets/primer-timeline.png){#fig:primer-timeline.png}
 
-!["Blankslates are for when there is a lack of content within a page or section. Use them as placeholders to tell users why something isn't there." [@BlankslatePrimerCSS]](chapters/30-design/assets/primer-blankslate.png){#fig:primer-blankslate.png}
+!["Blankslates are for when there is a lack of content within a page or section. Use them as placeholders to tell users why something isn't there." [@BlankslatePrimerCSS]](chapters/30-impl/assets/primer-blankslate.png){#fig:primer-blankslate.png}
