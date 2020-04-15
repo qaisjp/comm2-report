@@ -57,14 +57,6 @@ export interface UserProfile extends User, UserProfileData {
 
 : l {#lst:typf-UserProfile}
 
-## Derived user types
-
-```ts
-// UserID can either be the name of the user, or its numeric ID
-export type UserID = User['username'] | User['id'];
-```
-
-: l {#lst:typf-UserDerived}
 
 ## `Resource`
 
@@ -131,10 +123,6 @@ export type ResourcePatchRequest = Partial<
 
 // ResourceID can either be the name of the resource, or its numeric ID
 export type ResourceID = Resource['id'] | Resource['name'];
-
-export type PackageID = ResourcePackage['id'];
-
-export type ResourceCreatePackageResponse = Pick<ResourcePackage, 'id'>;
 ```
 
 : Derived {#lst:typf-ResDerived}

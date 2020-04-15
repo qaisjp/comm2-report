@@ -28,6 +28,24 @@ Angular has the following concepts:
 
 All of these concepts are implemented as TypeScript classes. Components and Directives can only interact with each other through services, and these services are _injected_ into the class via the constructor. This process is known as _dependency injection_ and it enhances software testing by allowing "dependencies to be mocked or stubbed out" [@DesignPatternsWhat].
 
+Note that every single module imports the `CommonModule` module from the Angular standard library.
+
+### Modules {#ec:modules}
+
+The modules that we created are:
+
+- AppModule - handles the entire application
+    - AppRoutingModule - handles routing for the entire application
+    - UserModule - provides a service to interact with all user _information_
+    - ProfileModule - provides components to interact with all user _profile pages_
+        - ProfileRoutingModule - handles routes relating to a user's profile
+    - ResourceModule - provides services and components that interact with all resources
+        - ResourceRoutingModule - handles routes relating to an individual resource
+    - AuthModule - provides services and components relating to user _authentication_
+    - OcticonModule - provides a directive to create "octicon" images across the website
+
+Routing is discussed in more detail in [@sec:routing].
+
 ## CSS frameworks
 
 We wanted a CSS framework that had the following properties:
