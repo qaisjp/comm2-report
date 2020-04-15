@@ -31,7 +31,7 @@ crates.io is a progressive web application that uses the [Ember.js](https://embe
 
 The website uses its own RESTful public API which is available at https://crates.io/api.
 
-Clicking on the "rustfm" package on the search results for "lastfm" triggers several API calls, listed in [@tbl:cratespublend]. The user is presented with a "Loading..." indicator blocking the entire page whilst all this information is being fetched, despite the user not necessarily needing to know all this information.
+Clicking on the "rustfm" package on the search results for "lastfm" triggers several API calls, listed in [@tbl:crates-publend]. The user is presented with a "Loading..." indicator blocking the entire page whilst all this information is being fetched, despite the user not necessarily needing to know all this information.
 
 | Path | Description |
 |-----|-----------|
@@ -69,7 +69,7 @@ Method   Path               Description
 
 : Private endpoints on `https://crates.io/api/private/session` {#tbl:crates-privend}
 
-[Table @tbl:creates-privend] shows a number of private endpoints.
+[Table @tbl:crates-privend] shows a number of private endpoints.
 
 ## GitHub (github.com)
 

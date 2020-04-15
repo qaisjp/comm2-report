@@ -4,6 +4,8 @@
 
 The technologies used in this project were carefully chosen to support automated testing. The backend supports testing via Go's inbuilt testing infrastructure (`go test`). Every component on the frontend has a test file, automatically generated via the `ng generate` command, ready for manual expansion by contributors.
 
+As mentioned in [@sec:angular-concepts], the frontend makes extensive use of dependency injection, which makes testing much easier.
+
 # Stakeholders
 
 **Administrators and Moderators**
