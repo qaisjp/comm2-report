@@ -26,7 +26,7 @@ Sysadmins can quickly deploy the website using Docker and database migrations ca
 
 Contributors can quickly deploy a local version of the website using Docker.
 
-Database migrations can easily be applied but if multiple contributors submit pull requests, a conflict will arise that needs to be handled manually. This may not be in the form of a _Git_ merge conflict, meaning that extra care needs to be taken when reviewing pull requests. This problem could be solved via a GitHub Action.
+Database migrations can easily be applied but if multiple contributors submit pull requests, a conflict will arise that needs to be handled manually. These migrations are newly created files resulting in a lack of Git merge conflict, so extra care needs to be taken when reviewing pull requests. This problem could be solved via automated repository checks.
 
 The backend follows Go's conventions including established commenting practices, meaning that the `go doc` tool can be used to quickly generate documentation from the code. Since the code will be open source, any contributor would be able to access this documentation online via the `godoc.org` service.
 

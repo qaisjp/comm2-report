@@ -127,7 +127,7 @@ This same flow is followed for both uploading brand new resources and updating e
 
 ![Searching resources for "handling editor" in the description](chapters/20-bg/assets/comm1-search.png){#fig:comm1-search}
 
-This section contains three input fields allowing the user to filter by name, description, or type. The `type` field is a dropdown consisting of the four allowed resources types listed in [@sec:terminology] Terminology.
+This section contains three input fields allowing the user to filter by name, description, or type. The `type` field is a dropdown consisting of the four allowed resources types listed in [@sec:terminology].
 
 Pressing the search button will send a POST request to the same page with the search query sent via the submitted form. As shown in [@fig:comm1-search], the search results page has:
 
@@ -137,8 +137,8 @@ Pressing the search button will send a POST request to the same page with the se
 
 This page has several UX problems:
 
-- there is no need to show the Upload resource section - this wastes vital vertical space
-- input fields are cleared, requiring the user to manually type their query again
+- There is no need to show the Upload resource section - this wastes vital vertical space.
+- Input fields are cleared, requiring the user to manually type their query again.
 - Because this is a POST request, clicking on a resource and then pressing the back button will result in a browser popup asking the user if they would like to resend the search query request.
     1. There is no need to show the popup as the user will always want to see the search results again.
     1. The user may become confused and choose to cancel the operation.
@@ -147,15 +147,15 @@ Additionally, using the `POST` method in the HTTP request here is unnecessary as
 
 **"Top Downloads"**
 
-This section shows 15 unsuspended resources, ordered by the `download_count` column in descending order.
+This section shows 15 unsuspended resources, ordered by _download count_ in descending order.
 
 This section is quite useful to new users that are server owners - it gives them an idea of the most popular resources since the beginning of the platform. These resources are often quite mature and are easy for server owners to install. However, download count is not an accurate metric for quality, and can simply reflect the community's historical interest in the resource.
 
-This section is _not_ useful to returning users as the section changes infrequently. This is because long-standing resources are likely to accumulate many downloads over a long period of time - it is unlikely for a new resource to legitimately accumulate more downloads than a resource that was created over ten years ago.
+This section is not useful to returning users as the section changes infrequently. This is because long-standing resources are likely to accumulate many downloads over a long period of time - it is unlikely for a new resource to legitimately accumulate more downloads than a resource that was created over ten years ago.
 
 **"Top rated Resources"**
 
-This section shows 15 unsuspended resources with at least ten votes, ordered by the `rating` column in descending order.
+This section shows 15 unsuspended resources with at least ten votes, ordered by _rating_ in descending order.
 
 The "Top rated Resources" section attempts to increase effectiveness and prevent abuse by limiting list entries to resources with at least ten votes, but this is still ineffective as the rating system does not take into account the number of votes. The current system will score a resource with six 5-star votes _higher_ than a resource with one hundred 5-star votes and two 1-star votes.
 

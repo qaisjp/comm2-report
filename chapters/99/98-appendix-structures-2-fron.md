@@ -9,42 +9,6 @@ interface LoginResponse {
 }
 ```
 
-: `User` {#lst:typf-User}
-```ts
-export interface User {
-  readonly id: number;
-  readonly created_at: string;
-  readonly username: string;
-  readonly gravatar: string;
-  readonly level: number;
-
-  readonly follows_you?: boolean;
-}
-```
-
-: `AuthenticatedUser` {#lst:typf-AuthenticatedUser}
-```ts
-export interface AuthenticatedUser extends User {
-  readonly updated_at: string;
-}
-```
-
-: `UserProfile` and `UserProfileData` {#lst:typf-UserProfile}
-```ts
-export interface UserProfileData {
-  bio: string;
-  location: string;
-  organisation: string;
-  website: string;
-}
-
-export interface UserProfile extends User, UserProfileData {
-  readonly resources: Resource[];
-  readonly following: User[];
-  readonly followers: User[];
-}
-```
-
 : `Resource` {#lst:typf-Resource}
 ```ts
 // resource.service.ts

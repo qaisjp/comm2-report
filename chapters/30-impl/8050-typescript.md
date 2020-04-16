@@ -1,4 +1,4 @@
-# TypeScript
+# TypeScript Problems
 
 #### Global variables
 
@@ -7,6 +7,44 @@ One problem we encountered was the accidental access of global variables. The br
 > "Disallow specific global variables. Disallowing usage of specific global variables can be useful if you want to allow a set of global variables by enabling an environment, but still want to disallow some of those." [@RuleNorestrictedglobals]
 
 #### Composing Types {#sec:composed-types}
+
+: Fields readable by all users {#lst:typf-User}
+```ts
+export interface User {
+  readonly id: number;
+  readonly created_at: string;
+  readonly username: string;
+  readonly gravatar: string;
+  readonly level: number;
+
+  readonly follows_you?: boolean;
+}
+```
+
+: Fields only available to the currently authenticated user {#lst:typf-AuthenticatedUser}
+```ts
+export interface AuthenticatedUser extends User {
+  readonly updated_at: string;
+  // in the future, more fields
+}
+```
+
+: Interfaces relating to a user's _profile_ {#lst:typf-UserProfile}
+```ts
+export interface UserProfileData {
+  bio: string;
+  location: string;
+  organisation: string;
+  website: string;
+}
+
+export interface UserProfile extends User, UserProfileData {
+  readonly resources: Resource[];
+  readonly following: User[];
+  readonly followers: User[];
+}
+```
+
 
 In our code we did not want to explicitly write multiple similar type declarations as this would make it difficult to change the types of our structures later on. To get around this problem we made use of TypeScript's type composition features.
 
@@ -132,9 +170,9 @@ form: FormGroup = this.formBuilder.group({
 } as UserProfileData);
 ```
 
-In Go we can create an instance of a struct with "zero" (default) values, but in TypeScript no such feature exists. This means we must write the default object ourselves -- with all the fields manually.
+In TypeScript it is not possible to create a new object with default 'zero' values of an interface. We must explicitly create an object with all the fields we want, with zero values.
 
-To prevent bugs, it is important for our code to raise a compile-time error if we changed the declaration of `UserProfileData`. However, we discovered that this code would not error because the ` as ` keyword converts an object of type `any` into the type on the right hand side.
+To prevent bugs, it is important for our code to raise a compile-time error if we changed the declaration of `UserProfileData`. However, we discovered that this code would not cause an error because the ` as ` keyword converts an object of type `any` into the type on the right hand side.
 
 We discovered that in a previous version of TypeScript `<UserProfileData> { ... }` was a type _assertion_ - asserting that a given object was of the type `UserProfileData`, without actually checking the object. In that same version, using `{ ... } as UserProfileData` would throw an compile-time error as the types do not match.
 
@@ -158,13 +196,3 @@ form: FormGroup = this.formBuilder.group({...zeroUserProfileData});
 ```
 
 If we did not do this, future recreations of the component would have stale data as the default, rather than zero values.
-
-
-
-
-Listing: Listing caption
-
-```{#lst:code .haskell}
-main :: IO ()
-main = putStrLn "Hello World!"
-```
