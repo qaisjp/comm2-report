@@ -33,7 +33,7 @@ In our initial implementation we used the ngx-gravatar^[https://www.npmjs.com/pa
 <img ngxGravatar [email]="'alice@example.com'" size="30">
 ```
 
-We realised that this would reveal email addresses to all users of the website, and so now we generate the Gravatar URLs server-side and display the image using simple `img` tags, as shown below:
+We realised that this would reveal email addresses to all users of the website, so instead we generate the Gravatar URLs on the server and display the image using simple `img` tags, as shown below:
 
 ```html
 <img [src]="user.gravatar + '?size=150'">

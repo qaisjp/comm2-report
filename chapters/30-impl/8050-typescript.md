@@ -2,17 +2,17 @@
 
 #### Global variables
 
-One problem we encountered was the accidental access of global variables. The browser sets a number of default global variables - `name`, `window`, and more. This confused us as we used the `name` variable in a context where it was not defined, but no compile-time error arose. To resolve this we set the `no-restricted-globals` setting in our TypeScript linting configuration, which provides the following feature:
+One problem we encountered was the accidental access of global variables. The browser sets a number of default global variables - `name`, `window`, and more. We expected using the `name` variable, in a context where it was not defined, to result in a compile-time error, but instead it resulted in a runtime error! To resolve this we set the `no-restricted-globals` setting in our TypeScript linting configuration, which provides the following feature:
 
 > "Disallow specific global variables. Disallowing usage of specific global variables can be useful if you want to allow a set of global variables by enabling an environment, but still want to disallow some of those." [@RuleNorestrictedglobals]
 
 #### Composing Types {#sec:composed-types}
 
-In our code we did not want to repeat types as this would make it difficult to change the types of our structures later on. To get around this problem we made use of TypeScript's type composition features.
+In our code we did not want to explicitly write multiple similar type declarations as this would make it difficult to change the types of our structures later on. To get around this problem we made use of TypeScript's type composition features.
 
 In [@lst:typf-User] we declare a User interface with several _public_ fields that the world is allowed to view about every user. Since the authenticated user ([@lst:typf-AuthenticatedUser]) would be able to see at _least_ these fields, we made sure to use `extends` so that we only provided the additional fields available to `AuthenticatedUser`.
 
-Most API responses that return entities that relate to users return the User interface ([@lst:typf-User]). The API response for the user profile page, however, contains additional user _profile_ data, such as the user's bio -- this additional data is represented by the `UserProfileData` interface [@lst:typf-UserProfile].
+Most API responses that return entities relating to users return the User interface ([@lst:typf-User]). The API response for the user profile page, however, contains additional user _profile_ data, such as the user's bio -- this additional data is represented by the `UserProfileData` interface [@lst:typf-UserProfile].
 
 This interface is used when both modifying the data and also reading the data, so `UserProfileData` does not extend `User` directly. For the user profile response we created an additional `UserProfile` interface [@lst:typf-UserProfile] that extends _both_ `User` and `UserProfileData`. This interface also includes extra information such as the user's list of resources, and public information about the people that the user _follows_ or is _followed by_.
 
@@ -101,7 +101,7 @@ l({ pkg }) {
 }
 ```
 
-However, this `pkg` variable doesn't actually have the type `ResourcePackage`, it has the `any` type, allowing it to be used in place of... any type. To fix this, our immediate response was to include a type annotation for the `pkg` variable, like so:
+However, this `pkg` variable doesn't actually have the type `ResourcePackage`, it has the `any` type, allowing it to be used in place of _any_ type. To fix this, we initially included a type annotation for the `pkg` variable, like so:
 
 ```ts
 l({ pkg: ResourcePackage }) {
@@ -151,7 +151,7 @@ const zeroUserProfileData: UserProfileData = {
 };
 ```
 
-We remembered that objects in JavaScript (and TypeScript) are pass-by-reference, so to prevent bugs we performed a shallow copy when using our `zeroUserProfileData` object:
+Note that objects in JavaScript (and TypeScript) are pass-by-reference, so to prevent bugs we performed a shallow copy when using our `zeroUserProfileData` object:
 
 ```ts
 form: FormGroup = this.formBuilder.group({...zeroUserProfileData});

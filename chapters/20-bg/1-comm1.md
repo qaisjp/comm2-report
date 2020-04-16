@@ -1,6 +1,6 @@
 \chapter{Background}
 
-The existing platform^[https://community.mtasa.com] was written for the MTA:SA community in 2006 by Stanislav Bobrov and other contributors.
+The existing platform^[https://community.mtasa.com] was written for the MTA community in 2006 by Stanislav Bobrov and other contributors.
 
 # Navigation
 
@@ -9,23 +9,35 @@ All pages on the website, in terms of visual design, follow a consistent templat
 - country flags to change translation, when clicked, change the interface's language for the remainder of the active PHP session
 - a sidebar
 - the top navigation icons
-    - when logged out: has links to the "Home", "Register", "Login" and "Resources" pages, and an external link to the game's forum
+    - when logged out, has links to the "Home", "Register", "Login" and "Resources" pages, and an external link to the game's forum
 - three top navigation icons "groups", "resources" and "servers"; leading to their respective pages on the platform
 - a navigation bar
     - when logged out: has links to "Register" and "Login"
-    - when logged in: has links to "My View" (the user's profile), "Admin Panel" (if the user is an administrator), "Download MTA:SA" (an external link), and "Logout (foo)" (with `foo` replaced with the user's username)
+    - when logged in, links to:
+        - the user's profile ("My View")
+        - the admin panel, if they are an administrator ("Admin Panel":)
+        - an external download page ("Download MTA:SA")
+        - the logout page ("Logout (foo)", with "foo" replaced with the user's username)
 
-All pages on the website are produced by the `index.php` script. The active page is indicated by a GET parameters in the query string. One example of a page's `Path` is: `/index.php?p=stats&show=vehicles&id=254572`.
+The index.php script generates all pages on the website. `GET` parameters in the query string indicate the active page, as shown in the deconstruction of the following URL.
 
-The `p` parameter stands for "page" and usually describes the top-level module. Each module tends to handle submodules in their own way.
+`/index.php?p=stats&show=vehicles&id=254572`:
+
+- `p=stats`: statistics page
+- `show=vehicle`: show vehicle submodule
+- `id=254572`: show statistics for a user with ID 254572
+
+The `p` parameter describes the top-level module and each module tends to handle submodules in its own way.
+
+The existing platform originally included support for groups, resources and servers; but today we only use the resources feature. This project does not aim to recreate the groups or servers feature of the website.
 
 # Translation
 
 The existing system includes support for many different languages, making the website very accessible to the international MTA community.
 
-![Flags that behave as buttons at the top of each page](chapters/20-bg/assets/comm1-flags.png)
+![Flags that behave as buttons at the top of each page](chapters/20-bg/assets/comm1-flags.png){#fig:comm1-flags}
 
-Clicking one of these links will immediately switch standard parts the user interface to the language that the user has selected. On the home page, this currently changes the language of:
+Clicking one of the links in [@fig:comm1-flags] will switch standard parts the user interface to the language that the user has selected. On the home page, this currently changes the language of:
 
 - the sidebar links
 - some navigation bar links (excluding "Admin Panel" and "Download MTA:SA")
@@ -70,11 +82,10 @@ This is prone to errors and results in a poor user and contributor experience:
 
 !["Latest resources" section on the homepage](chapters/20-bg/assets/comm1-resources.png){#fig:comm1-resources}
 
-As shown in [@fig:comm1-resources], the homepage contains a short description of what the system is for and also a link to the resources page titled "Latest resources". There is also a preview of the 100 most recently uploaded resources underneath. Only resources that fit the following criteria are be shown:
+As shown in [Figure @fig:comm1-resources], the homepage contains a short description of what the system is for and also a link to the resources page titled "Latest resources". There is also a preview of the 100 most recently uploaded resources underneath. Only resources that fit the following criteria are be shown:
 
 - must be 'active' (not 'suspended' or 'pending')
 - must have pictures in the gallery
-- must not be marked as 'not safe for work'
 
 At the bottom of the page there are also pagination buttons. These pagination buttons simply submit a form that refreshes the page and simultaneously incrementing or decrementing the `oset` query string parameter by 100.
 
@@ -83,8 +94,7 @@ no pagination buttons are shown and only a single "MORE.." button is shown. The 
 
 If the `oset` parameter goes beyond the number of potentially viewable results, no resources will be shown, and the pagination
 buttons will still be enabled. This is considered to be poor user experience (UX) as a user may not know that they have reached the end of the list, and may attempt
-to keep click "Next" in the attempt to show more items. In practice, a user most likely will not click through seventy pages of pictures, so this pagination
-feature can be considered unnecessary.
+to keep clicking "Next" in the attempt to show more items. Currently a user is presented seventy pages, and in practice, a user most likely will not click through all those pages of pictures, so this pagination feature can be considered unnecessary.
 
 # Resources (`?p=resources`)
 
@@ -188,16 +198,16 @@ UX issues here include:
 - If the user is logged out, instead of saying "You need to be logged in to vote", the `Rate` row should either:
     - be hidden if the user is not logged in
     - be shown, but prompt for a login when a vote button is clicked
-- If the user is logged in and they are an author, currently the `Rate` row is currently hidden. This can confuse the author if they would like to tell other users how to vote on their resource. Instead, the vote buttons should be shown, but _disabled_ with a tooltip saying "You cannot vote on your own resource".
+- If the user is logged in and they are an author, the `Rate` row is hidden. This can confuse the author if they would like to tell other users how to vote on their resource. Instead, the vote buttons should be shown, but _disabled_ with a tooltip saying "You cannot vote on your own resource".
 - If the user is logged in, not an author, and has already voted - as shown in [@fig:comm1-vote-already], there should not be a message reminding the user that they can change their vote. The message is unnecessary as the other vote buttons are still clickable and are not disabled.
 
 ![Voting when the user is logged in, not an author, and has already voted.](chapters/20-bg/assets/comm1-vote-already.png){#fig:comm1-vote-already}
 
 **Description**
 
-The description field does not support embedding of rich media or other formatting. To improve user experience, MTA Hub could explore allowing users to insert rich text either through HTMl or Markdown.
+The description field does not support the embedding of rich media or other formatting. To improve user experience, MTA Hub could explore allowing users to insert rich text either through HTMl or Markdown.
 
-Links inserted in the description are currently broken due to poor HTML escaping. This is also susceptible to XSS attacks, which can allow an attacker to "transfer private information, such as cookies that may include session information, from the victim's machine to the attacker", as per CWE-79 [@CWE79ImproperNeutralization].
+Links inserted in the description are currently broken due to poor HTML escaping. This is also susceptible to Cross-Site Scripting (XSS) attacks, which can allow an attacker to "transfer private information, such as cookies that may include session information, from the victim's machine to the attacker", as per CWE-79 [@CWE79ImproperNeutralization].
 
 **Calls to action**
 
@@ -221,7 +231,7 @@ The edit resource page allows the user to:
 - delete the resource (if admin)
 - suspend the resource (if admin)
 
-Resources do not have a concept of "creators" and "collaborators", only "authors", and this means that the add or remove authors feature has serious security implications. All authors have equal permissions, meaning that a resource can be hijacked and stolen from its creator by a rogue collaborator. This is a security vulnerability that should be resolved in MTA Hub.
+Resources do not have a concept of "creators" and "collaborators", only "authors", and this means that the add or remove authors feature has serious security implications. All authors have equal permissions, meaning that a resource can be hijacked and stolen from its creator by a rogue collaborator. This is a security vulnerability we should resolve in MTA Hub.
 
 Authors should also be able to delete their own resources, especially since they are already permitted to delete all resource packages. One possible reason that this feature was gated to administrators only is to prevent malicious resource authors quickly name-squatting a resource after it has been deleted.
 

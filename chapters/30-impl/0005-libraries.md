@@ -1,6 +1,6 @@
 # Frontend
 
-## Web application frameworks
+## Web application frameworks {#sec:libs-frontend}
 
 In [@sec:bg-api-analysis] we evaluated a number of existing APIs; based on that information we decided to adopt a REST architectural style in designing our API.
 
@@ -28,7 +28,7 @@ Angular has the following concepts:
 
 All of these concepts are implemented as TypeScript classes. Components and Directives can only interact with each other through services, and these services are _injected_ into the class via the constructor. This process is known as _dependency injection_ and it enhances software testing by allowing "dependencies to be mocked or stubbed out" [@DesignPatternsWhat].
 
-Note that every single module imports the `CommonModule` module from the Angular standard library.
+Note that every module imports the `CommonModule` module from the Angular standard library.
 
 ### Modules {#ec:modules}
 
@@ -68,8 +68,8 @@ For this reason, we chose Primer - GitHub's open-source design system. Since Git
 We had three main reasons for choosing to build our API in Go:
 
 1. Go compiles down to a single statically linked binary, making it easy to deploy (see [@sec:deploy]).
-2. Go has fantastic performance whilst also being memory safe, type safe and mostly free of undefined behaviour.
-3. Go does not slow the developer down.
+2. Go is highly performant compared to the other languages we considered, whilst also being memory safe, type safe and mostly free of undefined behaviour.
+3. Go does not slow the developer down: we can write code quickly, that code builds fast, and its runtime behaviour is predictable.
 
 Go's webserver is multithreaded by default which improves its performance, but also make it susceptible to Go's only undefined behaviour: _race conditions_. We can make use of Go's inbuilt concurrency primitives - _channels_ - to alleviate this problem^[More information on Go's concurrency features can be found at: https://github.com/golang/go/wiki/LearnConcurrency].
 
@@ -79,4 +79,4 @@ Other languages we considered were:
 
 - Python, which lacks many of the above properties. It is interpreted and duck-typed, resulting in a lot of runtime overhead, and therefore poor performance. Whilst it is the fastest to write and does not need compiling, the lack of static typing makes it susceptible to runtime errors which could easily be resolved at compile time.
 - Rust can be statically linked and has better performance than Go, but it is slow to write and compile, making it difficult to build and experiment with.
-- C++ has the best performance but is not memory safe or free of undefined behaviour. These two properties would make the backend at risk of being vulnerable through memory exploits. A lot of developer time will be spent being extra careful to prevent the introduction of security vulnerabilities. Compile time is also an issue — "Go is significantly faster to compile over C++" [@GoVsComparison].
+- C++ has the best performance but is not memory safe or free of undefined behaviour. These two properties would make the backend at risk of being vulnerable through memory exploits. A lot of developer time would be spent being extra careful to prevent the introduction of security vulnerabilities. Compile time is also an issue — "Go is significantly faster to compile over C++" [@GoVsComparison].
