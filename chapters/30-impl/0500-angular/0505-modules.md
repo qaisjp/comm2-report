@@ -1,4 +1,4 @@
-### Modules {#sec:modules}
+## Modules {#sec:modules}
 
 Every module imports the `CommonModule` module from the Angular standard library.
 

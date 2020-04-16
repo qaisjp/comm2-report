@@ -94,3 +94,10 @@ Sources: (TODO CITEME)
 -   https://httpstatuses.com/401
 -   https://httpstatuses.com/403
 -   https://tools.ietf.org/html/rfc2616#section-10.4.2
+
+
+### HTTP Stuff, again
+
+Hyphens - The standard best practice for REST APIs is to have a hyphen, not camelcase or underscores. - This comes from Mark Masse's "REST API Design Rulebook" from Oreilly.
+
+Invalid resource zip uses status code 422 - https://httpstatuses.com/422 - Status Unprocessable Entity. This is only when checkResourceZip fails for a reason
