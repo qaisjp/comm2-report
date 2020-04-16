@@ -84,9 +84,9 @@ and authorisation as "the process of giving the user permission to access a spec
 
 [@irvineUnderstanding403Forbidden2011] says:
 
-> [..] Receiving a 401 response is the server telling you, “you aren’t authenticated--either not authenticated at all or authenticated incorrectly--but please reauthenticate and try again.” [..]
+> "Receiving a 401 response is the server telling you, 'you aren’t authenticated--either not authenticated at all or authenticated incorrectly--but please re-authenticate and try again.'"
 >
-> In summary, a 401 Unauthorized response should be used for missing or bad authentication, and a 403 Forbidden response should be used afterwards, when the user is authenticated but isn’t authorized to perform the requested operation on the given resource. [..]
+> "In summary, a 401 Unauthorized response should be used for missing or bad authentication, and a 403 Forbidden response should be used afterwards, when the user is authenticated but isn’t authorized to perform the requested operation on the given resource."
 
 Sources: (TODO CITEME)
 
