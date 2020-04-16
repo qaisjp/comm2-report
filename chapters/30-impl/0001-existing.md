@@ -1,19 +1,19 @@
-\chapter{Design \& Implementation}
-
 # Existing software hosting websites {#sec:bg-api-analysis}
 
 We discuss a number of the following features for each site:
 
 - **API** Does the website have an API?
-    - **Architecture.** Is the API and/or website RESTful? What is the URL scheme like?
+    - **Architecture.** Is the API and/or website REST-compliant? What is the URL scheme like?
     - **Use of public APIs.** Does it use its own public API?
 - **Public access?** Does the API and/or website allow public access?
-- **PWA.** Is the website a progressive web application?
+- **SPA.** Is the website a single page application?
 - **Naming.** How does the system handle name clashes?
+
+A single page application (SPA) is "a website whose current page is updated dynamically rather than being entirely downloaded from a server" [@PWAVsSPA]. These applications typically function by requesting data from a web API that has been built separately to the frontend.
 
 ## Npm Registry (npmjs.com)
 
-Npm is the package manager for Node. npmjs.com is a progressive web application built using React, which is a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
+Npm is the package manager for Node. npmjs.com is a single page application built using React, which is a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
 
 The website does not have a public API, so we navigated through several pages on the website and analysed the network requests that were made.
 
@@ -21,17 +21,20 @@ When the user visits `https://www.npmjs.com/package/leftpad` the page response s
 
 > "The page is fundamentally empty, but it includes a couple JS scripts. Once the browser downloads and parses those scripts, React will build up a picture of what the page should look like, and inject a bunch of DOM nodes to make it so. This is known as _client-side rendering_, since all the rendering happens on the client (the user's browser)." [@PerilsRehydration]
 
-The web application retrieves JSON data by making a web request to the same url as in `window.location` (the browser's current page). When visiting `https://www.npmjs.com/package/leftpad`, to make the backend return a JSON response instead of a page containing the application bundle, the frontend sets the `X-Spiferack` header with `1` as a value. This is not RESTful and is non-standard -- a more appropriate solution would be to set the `Accept` header to `application/json`.
+The web application retrieves JSON data by making a web request to the same url as in `window.location` (the browser's current page). When visiting `https://www.npmjs.com/package/leftpad`, to make the backend return a JSON response instead of a page containing the application bundle, the frontend sets the `X-Spiferack` header with `1` as a value. As denoted by the `X-` prefix, this header is non-standard. Additionally, the `X-Spiferack` header is not used in any open source software, so its meaning is only known to the Npm Registry developers. A semantically correct way to implement this feature would:
 
-Packages on npmjs.com were initially only globally scoped, making package names susceptible to conflicts. Npm version 2 introduces support for scopes, which "allows you to create a package with the same name as a package created by another user or Org without conflict". [@ScopesNpmDocumentation]
+- have the frontend set the `Accept` header of the request to `application/json`, and
+- have the web server read this header to determine whether it should respond with a JSON payload.
+
+Packages on npmjs.com were initially only globally scoped, making packages susceptible to name conflicts. Npm version 2 introduces support for scopes, which "allows you to create a package with the same name as a package created by another user or Org without conflict". [@ScopesNpmDocumentation]
 
 ## Rust Package Registry (crates.io)
 
-crates.io is a progressive web application that uses the [Ember.js](https://emberjs.com/) web framework. All packages are globally scoped.
+The Rust Package Registry website is a single page application that uses the Ember.js web framework^[https://emberjs.com/ - "Ember.js is a productive, battle-tested JavaScript framework for building modern web applications" (emberjs.com)]. All packages are globally scoped.
 
-The website uses its own RESTful public API which is available at https://crates.io/api.
+The website uses its own REST-compliant public API which is available at https://crates.io/api.
 
-Clicking on the "rustfm" package on the search results for "lastfm" triggers several API calls, listed in [@tbl:crates-publend]. The user is presented with a "Loading..." indicator blocking the entire page whilst all this information is being fetched, despite the user not necessarily needing to know all this information.
+Clicking on the "rustfm" package on the search results for "lastfm" triggers several API calls, listed in [@tbl:crates-publend]. The user is presented with a "Loading..." indicator blocking the entire page when all this information is being fetched, despite the user not necessarily needing to know all this information.
 
 | Path | Description |
 |-----|-----------|
@@ -45,12 +48,12 @@ Clicking on the "rustfm" package on the search results for "lastfm" triggers sev
 
 : Public endpoints on `https://crates.io/api/v1/crates/rustfm` {#tbl:crates-publend}
 
-This pop-in effect results in poor user experience, and can be combat in one or more of the following ways:
+This pop-in effect results in poor user experience, and can be resolved in one or more of the following ways:
 
 1. Using a single endpoint to return all the data necessary.
-2. Rendering data as son as it is available, and showing a seamless loading indicator for information that is still being fetched.
+2. Rendering data as soon as it is available, and showing a seamless loading indicator for information that is still being fetched.
 3. Lazy loading statistics - only fetching this data when the user scrolls down to the statistics section.
-4. Enabling HTTP/2 for the APi, so that requests can be multiplexed into a single connection.
+4. Enabling HTTP/2 for the API, so that requests can be multiplexed into a single connection.
 
 ---------------------------------------------------------------------------
 Method   Path               Description
@@ -69,7 +72,7 @@ Method   Path               Description
 
 : Private endpoints on `https://crates.io/api/private/session` {#tbl:crates-privend}
 
-[Table @tbl:crates-privend] shows a number of private endpoints.
+[Table @tbl:crates-privend] shows that the only private endpoints are relating to third-party authentication. If we implement third-party authentication into our platform, we should also make it clear that those endpoints are private.
 
 ## GitHub (github.com)
 
@@ -83,11 +86,11 @@ Their documentation describes why GitHub uses GraphQL:
 
 This has clear development and performance benefits:
 
-- we can "dogfood" more aggressively (dogfooding and its benefits are discussed in [@sec:design-api])
+- we can use our own API more aggressively (the benefits of using our own API is discussed in [@sec:design-api])
 - a single request can be called for all the data needed, which results in faster load times for the user
 - less _contributor_ time needs to be spent creating endpoints to provide bulk data
 
-Despite GraphQL being very powerful, we have adopted to build a simpler REST-based API. This is because GraphQL is quite difficult to setup and prototype with, especially when fleshing out a brand new API.
+Despite GraphQL being very powerful, we decided to build a simpler REST-compliant API. This is because GraphQL is quite difficult to set up and prototype with, especially when fleshing out a brand new API.
 
 **Naming**
 

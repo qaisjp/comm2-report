@@ -1,8 +1,6 @@
 # API Design {#sec:design-api}
 
-Progressive web applications are typically built by building an API separately to the frontend.
-
-Our progressive webapp uses its own _public_ API (rooted at `/v1/`) wherever possible (this is known as "dogfooding"), but we predict that
+Our web application uses its own _public_ API (rooted at `/v1/`) wherever possible (this is known as "dogfooding"), but we predict that
 certain pages may take a while to load if multiple requests are involved. One example of such a page would be a user's profile, where
 one request would be `/v1/users?username=qaisjp&exact=1` to find the user by username and get their user information and
 then `/v1/users/1/resources` to list their resources.

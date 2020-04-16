@@ -4,14 +4,15 @@
 
 In [@sec:bg-api-analysis] we evaluated a number of existing APIs; based on that information we decided to adopt a REST architectural style in designing our API.
 
-We chose to build a progressive web application as it allows us to "deliver native-like capabilities, reliability, and installability while reaching _anyone, anywhere, on any device_ with a single codebase" [@WhatMakesGood].
+We chose to build a single page application as SPAs are typically easy to transform into _progressive web applications_, which "deliver native-like capabilities, reliability, and installability while reaching _anyone, anywhere, on any device_ with a single codebase" [@WhatMakesGood].
 
-According to Ryan Donovan's _Top 10 Frameworks_ [-@Top10Frameworks], React, Angular and Vue are the top frontend frameworks. We excluded the other frameworks from the list as they are not relevant to frontend frameworks or progressive web applications.
+Of Ryan Donovan's _Top 10 Frameworks_ [-@Top10Frameworks], React, Angular and Vue were the top frontend frameworks that support single page applications.
 
-We did not have any experience with Vue, but had worked with Angular and React before, so we did not consider Vue. Despite React being more popular than Angular [@AngularVsReact] we chose Angular as it is "a full-fledged framework for software development, which usually does not require additional libraries" [@AngularVsReact]. This allows us to develop rapidly and lets us focus on building the application, compared to React which "is unopinionated and leaves developers to make choices about the best way to develop" [@ReactVsAngular].
+We did not have any experience with Vue, but had worked with Angular and React before, so we did not consider Vue for this project. Despite React being more popular than Angular [@AngularVsReact] we chose Angular as it is "a full-fledged framework for software development, which usually does not require additional libraries" [@AngularVsReact]. This allows us to develop rapidly and lets us focus on building the application, compared to React which "is unopinionated and leaves developers to make choices about the best way to develop" [@ReactVsAngular].
 
 We were particularly drawn to Angular's in-built `ng` command line interface, which:
-- gives us a standard project structure to use from the start - decrease developer overhead and making it easy for new contributors to join the project.
+
+- gives us a standard project structure to use from the start which decreases developer overhead and makes it easy for new contributors to join the project.
 - can generate new modules, components, services and directives quickly (these concepts are discussed in [@sec:angular-concepts]).
 - automatically generates foundational tests, which encourages test-driven development.
 
@@ -21,7 +22,7 @@ Angular also had an inbuilt internationalisation library which we could use to h
 
 Angular has the following concepts:
 
-- Components: functional views which have associated TypeScript have HTML templates and CSS styles associated with them, and be included in other HTML templates.
+- Components: functional views which have associated TypeScript have HTML templates and CSS styles associated with them, and are included in other HTML templates.
 - Directives: extend the templating system, making it possible to add new HTML attributes.
 - Services: persistent single classes that are shared between components.
 - Modules: which can import other modules, declare components & directives, and export components & directives.
@@ -68,15 +69,15 @@ For this reason, we chose Primer - GitHub's open-source design system. Since Git
 We had three main reasons for choosing to build our API in Go:
 
 1. Go compiles down to a single statically linked binary, making it easy to deploy (see [@sec:deploy]).
-2. Go is highly performant compared to the other languages we considered, whilst also being memory safe, type safe and mostly free of undefined behaviour.
+2. Go is highly performant compared to the other languages we considered, while also being memory safe, type safe and mostly free of undefined behaviour.
 3. Go does not slow the developer down: we can write code quickly, that code builds fast, and its runtime behaviour is predictable.
 
-Go's webserver is multithreaded by default which improves its performance, but also make it susceptible to Go's only undefined behaviour: _race conditions_. We can make use of Go's inbuilt concurrency primitives - _channels_ - to alleviate this problem^[More information on Go's concurrency features can be found at: https://github.com/golang/go/wiki/LearnConcurrency].
+Go's webserver is multithreaded by default which improves its performance, but also makes it susceptible to Go's only undefined behaviour: _race conditions_. We can make use of Go's inbuilt concurrency primitives - _channels_ - to alleviate this problem^[More information on Go's concurrency features can be found at: https://github.com/golang/go/wiki/LearnConcurrency].
 
 We also had the most prior experience writing software in Go, making the language an obvious choice.
 
 Other languages we considered were:
 
-- Python, which lacks many of the above properties. It is interpreted and duck-typed, resulting in a lot of runtime overhead, and therefore poor performance. Whilst it is the fastest to write and does not need compiling, the lack of static typing makes it susceptible to runtime errors which could easily be resolved at compile time.
+- Python, which lacks many of the above properties. It is interpreted and weakly typed, resulting in a lot of runtime overhead, and therefore poor performance. While it is the fastest to write and does not need compiling, the lack of static typing makes it susceptible to runtime errors which could easily be resolved at compile time.
 - Rust can be statically linked and has better performance than Go, but it is slow to write and compile, making it difficult to build and experiment with.
 - C++ has the best performance but is not memory safe or free of undefined behaviour. These two properties would make the backend at risk of being vulnerable through memory exploits. A lot of developer time would be spent being extra careful to prevent the introduction of security vulnerabilities. Compile time is also an issue — "Go is significantly faster to compile over C++" [@GoVsComparison].

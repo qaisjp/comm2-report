@@ -142,7 +142,8 @@ This page has several UX problems:
 - Because this is a POST request, clicking on a resource and then pressing the back button will result in a browser popup asking the user if they would like to resend the search query request.
     1. There is no need to show the popup as the user will always want to see the search results again.
     1. The user may become confused and choose to cancel the operation.
-    1. This is not RESTful — a POST request here is unnecessary as no data is being changed.
+
+Additionally, using the `POST` method in the HTTP request here is unnecessary as no data is being changed. This violates representational state transfer (REST) principles. REST-compliant web services provide "uniform interface semantics -- essentially create, retrieve, update and delete -- rather than arbitrary or application-specific interfaces" [@WebServicesArchitecture].  This is a software architectural style shared by all production-grade APIs.
 
 **"Top Downloads"**
 

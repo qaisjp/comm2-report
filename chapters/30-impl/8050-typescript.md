@@ -1,4 +1,4 @@
-# Wrangling TypeScript
+# TypeScript
 
 #### Global variables
 
@@ -158,3 +158,13 @@ form: FormGroup = this.formBuilder.group({...zeroUserProfileData});
 ```
 
 If we did not do this, future recreations of the component would have stale data as the default, rather than zero values.
+
+
+
+
+Listing: Listing caption
+
+```{#lst:code .haskell}
+main :: IO ()
+main = putStrLn "Hello World!"
+```
