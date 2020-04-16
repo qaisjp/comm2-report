@@ -206,7 +206,7 @@ UX issues here include:
 
 **Description**
 
-The description field does not support the embedding of rich media or other formatting. To improve user experience, MTA Hub could explore allowing users to insert rich text either through HTMl or Markdown.
+The description field does not support the embedding of rich media or other formatting. To improve user experience, MTA Hub could explore allowing users to insert rich text either through HTML or Markdown.
 
 Links inserted in the description are currently broken due to poor HTML escaping. This is also susceptible to Cross-Site Scripting (XSS) attacks, which can allow an attacker to "transfer private information, such as cookies that may include session information, from the victim's machine to the attacker", as per CWE-79 [@CWE79ImproperNeutralization].
 

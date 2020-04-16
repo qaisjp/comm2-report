@@ -1,4 +1,6 @@
-# Frontend
+# Technology Stack
+
+A technology stack is a "are the frameworks, languages, and software products"[@WhatTechnologyStack] that developers use to build an application. In this section we give a high level overview of the technologies we used to build MTA Hub and give an overview of how all of these technologies fit together.
 
 ## Web application frameworks {#sec:libs-frontend}
 
@@ -47,7 +49,7 @@ The modules that we created are:
 
 Routing is discussed in more detail in [@sec:routing].
 
-## CSS frameworks
+### CSS frameworks
 
 We wanted a CSS framework that had the following properties:
 
@@ -64,11 +66,11 @@ For this reason, we chose Primer - GitHub's open-source design system. Since Git
 
 !["Blankslates are for when there is a lack of content within a page or section. Use them as placeholders to tell users why something isn't there." [@BlankslatePrimerCSS]](chapters/30-impl/assets/primer-blankslate.png){#fig:primer-blankslate}
 
-# Backend
+## Backend
 
 We had three main reasons for choosing to build our API in Go:
 
-1. Go compiles down to a single statically linked binary, making it easy to deploy (see [@sec:deploy]).
+1. Go compiles down to a single statically linked binary, making it easy to deploy.
 2. Go is highly performant compared to the other languages we considered, while also being memory safe, type safe and mostly free of undefined behaviour.
 3. Go does not slow the developer down: we can write code quickly, that code builds fast, and its runtime behaviour is predictable.
 
@@ -81,3 +83,30 @@ Other languages we considered were:
 - Python, which lacks many of the above properties. It is interpreted and weakly typed, resulting in a lot of runtime overhead, and therefore poor performance. While it is the fastest to write and does not need compiling, the lack of static typing makes it susceptible to runtime errors which could easily be resolved at compile time.
 - Rust can be statically linked and has better performance than Go, but it is slow to write and compile, making it difficult to build and experiment with.
 - C++ has the best performance but is not memory safe or free of undefined behaviour. These two properties would make the backend at risk of being vulnerable through memory exploits. A lot of developer time would be spent being extra careful to prevent the introduction of security vulnerabilities. Compile time is also an issue — "Go is significantly faster to compile over C++" [@GoVsComparison].
+
+## Database
+
+Storing information in a database allows us to persist data across multiple independent requests. We chose to store our data in a PostgreSQL database as:
+
+- the database for the existing system is stored in PostgreSQL, making migration easier
+- f
+
+## Deployment {#sec:deploy}
+
+// TODO: citations
+
+Deployment is an important part of creating a web platform — merely building an application is insufficient, it should be easy to deploy locally (for development) as well as to deploy in the production environment.
+
+To make it easier for contributors to develop, we will use Docker and docker-compose to create a consistent development workspace.
+
+This has the following advantages:
+
+- Potential contributors can quickly "spin up" a local instance of the website and can make improvements quickly.
+- A seasoned contributor can spend more time developing, and less time helping new contributors get started.
+- Support for Windows comes "for free" - less effort can spent in making our project work in non-POSIX-compliant environments.
+
+We intend for this same Docker image to be used in production, keeping the development environment as close to the production environment as possible. This helps keep environment or configuration-related bugs to a minimum.
+
+
+## Overview
+

@@ -1,4 +1,4 @@
-# TypeScript Problems
+## TypeScript Challenges
 
 #### Global variables
 
@@ -106,7 +106,7 @@ In [@lst:typf-ResDerived] we build other types using TypeScript's type transform
     export type ResourceID = number | string
     ```
 
-#### Destructing Objects
+#### Destructuring Objects
 
 Declaring extra types that are only being used once is wasteful. In a number of lambda functions we only want a single field of a single parameter.
 
@@ -130,7 +130,7 @@ l(data): {
 }
 ```
 
-We want to write more concise code, so we take advantage of TypeScript's support for object destructuring:
+We want to write more concise code, so we take advantage of TypeScript's support for object _destructuring_:
 
 ```ts
 l({ pkg }) {

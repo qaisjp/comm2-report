@@ -1,5 +1,4 @@
-
-# Routing {#sec:routing}
+## Routing {#sec:routing}
 
 Routing in Angular is provided by the `RoutingModule` in the Angular standard library.
 

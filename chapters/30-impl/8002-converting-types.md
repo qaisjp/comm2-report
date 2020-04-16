@@ -1,5 +1,5 @@
 
-# Converting Go types
+## Converting Go types
 
 We use the `encoding/json` package in the Go standard library to convert Go types to and from JSON. This process is called marshalling and unmarshalling:
 
