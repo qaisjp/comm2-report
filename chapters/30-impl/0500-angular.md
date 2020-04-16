@@ -4,10 +4,25 @@ This section describes the high-level design and implementation of our Angular f
 
 ## Logging
 
-Logging was done via https://www.codemag.com/Article/1711021/Logging-in-Angular-Applications
+We created a `LogService` to handle logging centrally throughout our application. Traditionally logging is handled using the `console.log` function, but this is not the "best practice for production applications" [@LoggingAngularApplications].
 
+At the moment our `LogService` is extremely simple, simply containing functions like the following:
+
+```ts
+warn(...msg: any) {
+    console.warn(...msg);
+}
+
+debug(...msg: any) {
+    console.debug(...msg);
+}
+```
+
+This logging service can be extended in a production environment to make it easy to share exceptions in real-time with a backend. This is useful as it allows us to "quickly triage and resolve issues [..] by providing cross-stack visibility and deep context about errors" [@Sentry].
 
 ## Dates and Times
+
+
 
 generate "ago" strings using https://www.npmjs.com/package/ngx-moment
 
