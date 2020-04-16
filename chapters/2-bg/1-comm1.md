@@ -35,7 +35,7 @@ The existing platform originally included support for groups, resources and serv
 
 The existing system includes support for many different languages, making the website very accessible to the international MTA community.
 
-![Flags that behave as buttons at the top of each page](chapters/20-bg/assets/comm1-flags.png){#fig:comm1-flags}
+![Flags that behave as buttons at the top of each page](chapters/2-bg/assets/comm1-flags.png){#fig:comm1-flags}
 
 Clicking one of the links in [@fig:comm1-flags] will switch standard parts the user interface to the language that the user has selected. On the home page, this currently changes the language of:
 
@@ -80,7 +80,7 @@ This is prone to errors and results in a poor user and contributor experience:
 
 # Homepage (`?p=main`)
 
-!["Latest resources" section on the homepage](chapters/20-bg/assets/comm1-resources.png){#fig:comm1-resources}
+!["Latest resources" section on the homepage](chapters/2-bg/assets/comm1-resources.png){#fig:comm1-resources}
 
 As shown in [Figure @fig:comm1-resources], the homepage contains a short description of what the system is for and also a link to the resources page titled "Latest resources". There is also a preview of the 100 most recently uploaded resources underneath. Only resources that fit the following criteria are be shown:
 
@@ -108,7 +108,7 @@ This page has several headings:
 
 **Upload new resource**
 
-![Primary resource upload interface](chapters/20-bg/assets/comm1-pkg-upload-2.png){#fig:comm1-pkg-upload}
+![Primary resource upload interface](chapters/2-bg/assets/comm1-pkg-upload-2.png){#fig:comm1-pkg-upload}
 
 Underneath the "Upload resource" heading is a singular "Upload!" link. When the user clicks this link, if they are not logged in, they are shown a login panel with a username and password field.
 
@@ -125,7 +125,7 @@ This same flow is followed for both uploading brand new resources and updating e
 
 **Filter options**
 
-![Searching resources for "handling editor" in the description](chapters/20-bg/assets/comm1-search.png){#fig:comm1-search}
+![Searching resources for "handling editor" in the description](chapters/2-bg/assets/comm1-search.png){#fig:comm1-search}
 
 This section contains three input fields allowing the user to filter by name, description, or type. The `type` field is a dropdown consisting of the four allowed resources types listed in [@sec:terminology].
 
@@ -172,11 +172,11 @@ The authentication process has several UX problems:
 - Entering incorrect credentials when logging in will present the user with an error "Invalid user id", rather than a "Invalid username/password" message.
 - Errors during registration shows duplicate "Username already exists" warnings and does not visually stand out, as shown in [@fig:comm1-registration-error].
 
-    ![A warning is shown twice and does not stand out.](chapters/20-bg/assets/comm1-registration-error.png){#fig:comm1-registration-error}
+    ![A warning is shown twice and does not stand out.](chapters/2-bg/assets/comm1-registration-error.png){#fig:comm1-registration-error}
 
 - The logout landing page shows links in the navigation bar that should only be shown to logged in users, as shown in [@fig:comm1-logout]. This is can confuse t he user into thinking that the logout process failed.
 
-    ![The navigation bar shows incorrect links on the logout page.](chapters/20-bg/assets/comm1-logout.png){#fig:comm1-logout}
+    ![The navigation bar shows incorrect links on the logout page.](chapters/2-bg/assets/comm1-logout.png){#fig:comm1-logout}
 
 - The logout landing page only shows for one second before redirecting to the homepage. This is unexpected — according to [@InteractionDesignRedirect] "if there is text on a redirect screen give the user enough time to engage with the concept of the content, regardless of the time it takes to redirect".
 
@@ -191,7 +191,7 @@ Individual resource pages are split into four main sections:
 
 **Heading**
 
-![The header of the "hedit" resource](chapters/20-bg/assets/comm1-hedit-header.png){#fig:comm1-hedit-header}
+![The header of the "hedit" resource](chapters/2-bg/assets/comm1-hedit-header.png){#fig:comm1-hedit-header}
 
 UX issues here include:
 
@@ -202,7 +202,7 @@ UX issues here include:
 - If the user is logged in and they are an author, the `Rate` row is hidden. This can confuse the author if they would like to tell other users how to vote on their resource. Instead, the vote buttons should be shown, but _disabled_ with a tooltip saying "You cannot vote on your own resource".
 - If the user is logged in, not an author, and has already voted - as shown in [@fig:comm1-vote-already], there should not be a message reminding the user that they can change their vote. The message is unnecessary as the other vote buttons are still clickable and are not disabled.
 
-![Voting when the user is logged in, not an author, and has already voted.](chapters/20-bg/assets/comm1-vote-already.png){#fig:comm1-vote-already}
+![Voting when the user is logged in, not an author, and has already voted.](chapters/2-bg/assets/comm1-vote-already.png){#fig:comm1-vote-already}
 
 **Description**
 
