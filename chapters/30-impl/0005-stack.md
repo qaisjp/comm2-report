@@ -60,11 +60,11 @@ We wanted a CSS framework that had the following properties:
 
 We were initially drawn to Bootstrap as it satisfies all the constraints and we had previous experience using the framework. We discovered that Bootstrap 4 uses jQuery, which is a dependency that does not align with the declarative nature of Angular, and can cause bugs if used improperly.
 
-For this reason, we chose Primer - GitHub's open-source design system. Since GitHub is similar to MTA Hub in that both platforms allow users to upload software archives, we could also leverage Primer's additional inbuilt components that are missing in Bootstrap, as shown in [@fig:primer-timeline] and [@fig:primer-blankslate].
-
 !["The `TimelineItem` component is used to display items on a vertical timeline, connected by `TimelineItem-badge` elements." [@TimelinePrimerCSS]](chapters/30-impl/assets/primer-timeline.png){#fig:primer-timeline}
 
 !["Blankslates are for when there is a lack of content within a page or section. Use them as placeholders to tell users why something isn't there." [@BlankslatePrimerCSS]](chapters/30-impl/assets/primer-blankslate.png){#fig:primer-blankslate}
+
+For this reason, we chose Primer - GitHub's open-source design system. Since GitHub is similar to MTA Hub in that both platforms allow users to upload software archives, we could also leverage Primer's additional inbuilt components that are missing in Bootstrap, as shown in [@fig:primer-timeline] and [@fig:primer-blankslate].
 
 ## Backend
 
@@ -84,22 +84,19 @@ Other languages we considered were:
 - Rust can be statically linked and has better performance than Go, but it is slow to write and compile, making it difficult to build and experiment with.
 - C++ has the best performance but is not memory safe or free of undefined behaviour. These two properties would make the backend at risk of being vulnerable through memory exploits. A lot of developer time would be spent being extra careful to prevent the introduction of security vulnerabilities. Compile time is also an issue — "Go is significantly faster to compile over C++" [@GoVsComparison].
 
-## Database
+### Database
 
 Storing information in a database allows us to persist data across multiple independent requests. We chose to store our data in a PostgreSQL database as:
 
-- the database for the existing system is stored in PostgreSQL, making migration easier
-- f
+- our data is relational
+- it provides extra useful features such as enumerations and case insensitive pattern matching (the `ilike` operator)
+- the existing system already uses PostgreSQL so it will be easier to migrate to a new database schema than a completely different type of database
 
 ## Deployment {#sec:deploy}
 
-// TODO: citations
-
 Deployment is an important part of creating a web platform — merely building an application is insufficient, it should be easy to deploy locally (for development) as well as to deploy in the production environment.
 
-To make it easier for contributors to develop, we will use Docker and docker-compose to create a consistent development workspace.
-
-This has the following advantages:
+To make it easier for contributors to develop, we use Docker to create a consistent development environment for the backend. Docker allows us to "easily pack, ship, and run any application as a lightweight, portable, self-sufficient container, which can run virtually anywhere" [@WhatDockerWhy]. This gives us the following advantages:
 
 - Potential contributors can quickly "spin up" a local instance of the website and can make improvements quickly.
 - A seasoned contributor can spend more time developing, and less time helping new contributors get started.
@@ -107,6 +104,4 @@ This has the following advantages:
 
 We intend for this same Docker image to be used in production, keeping the development environment as close to the production environment as possible. This helps keep environment or configuration-related bugs to a minimum.
 
-
-## Overview
-
+The Angular command line interface ensures that the tools currently being used match the version defined in the repository's `package.json` file, so we do not need to use Docker for the frontend.
