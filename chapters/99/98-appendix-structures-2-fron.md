@@ -1,7 +1,6 @@
 # Frontend
 
-## `LoginResponse`
-
+: `LoginResponse` {#lst:typf-LoginResponse}
 ```ts
 // auth.service.ts
 interface LoginResponse {
@@ -10,10 +9,7 @@ interface LoginResponse {
 }
 ```
 
-: LoginResponse {#lst:typf-LoginResponse}
-
-## `User`
-
+: `User` {#lst:typf-User}
 ```ts
 export interface User {
   readonly id: number;
@@ -26,20 +22,14 @@ export interface User {
 }
 ```
 
-: l {#lst:typf-User}
-
-## `AuthenticatedUser`
-
+: `AuthenticatedUser` {#lst:typf-AuthenticatedUser}
 ```ts
 export interface AuthenticatedUser extends User {
   readonly updated_at: string;
 }
 ```
 
-: l {#lst:typf-AuthenticatedUser}
-
-## `UserProfile`, `UserProfileData`
-
+: `UserProfile` and `UserProfileData` {#lst:typf-UserProfile}
 ```ts
 export interface UserProfileData {
   bio: string;
@@ -55,11 +45,7 @@ export interface UserProfile extends User, UserProfileData {
 }
 ```
 
-: l {#lst:typf-UserProfile}
-
-
-## `Resource`
-
+: `Resource` {#lst:typf-Resource}
 ```ts
 // resource.service.ts
 export interface Resource {
@@ -79,10 +65,7 @@ export interface Resource {
 }
 ```
 
-: Resource {#lst:typf-Resource}
-
-## `ResourceVisibility`
-
+: `ResourceVisibility` {#lst:typf-ResourceVisibility}
 ```ts
 export enum ResourceVisibility {
   PUBLIC = 'public',
@@ -90,10 +73,7 @@ export enum ResourceVisibility {
 }
 ```
 
-: ResourceVisibility {#lst:typf-ResourceVisibility}
-
-## `ResourcePackage`
-
+: `ResourcePackage` {#lst:typf-ResourcePackage}
 ```ts
 export interface ResourcePackage {
   readonly id: number;
@@ -110,10 +90,7 @@ export interface ResourcePackage {
 }
 ```
 
-: ResourcePackage {#lst:typf-ResourcePackage}
-
-## Derived resource types
-
+: Derived resource types {#lst:typf-ResDerived}
 ```ts
 export type ResourceCreateResponse = Readonly<Pick<Resource, 'id'>>;
 export type ResourcePatchRequest = Partial<
@@ -124,5 +101,3 @@ export type ResourcePatchRequest = Partial<
 // ResourceID can either be the name of the resource, or its numeric ID
 export type ResourceID = Resource['id'] | Resource['name'];
 ```
-
-: Derived {#lst:typf-ResDerived}

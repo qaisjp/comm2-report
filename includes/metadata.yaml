@@ -15,7 +15,6 @@ secnumdepth: 2
 
 # For pandoc-crossref
 linkReferences: true
-listings: true
 codeBlockCaptions: true
 # numberSections: true
 # chapters: true
@@ -35,4 +34,23 @@ classoption:
 title: "MTAHub: a website to share and discuss software packages"
 author: Qais Patankar
 lang: en-GB
+
+header-includes:
+- |
+    ```{=latex}
+        \pagenumbering{roman}
+
+        \course{BEng Computer Science}
+        \project{4th Year Project Report}
+
+        \abstract{
+            In this project we discuss, design and implement a resource sharing website
+            for the game MTA: San Andreas. \emph{Resources} are modular packages containing
+            scripts, assets and metadata that change the way the game behaves.
+
+            We performed a security and user experience analysis of the existing community platform,
+            suggested several improvements to the existing system,
+            and incorporated these changes into a prototype of an improved system.
+        }
+    ```
 ---

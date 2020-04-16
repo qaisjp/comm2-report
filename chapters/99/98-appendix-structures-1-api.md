@@ -1,7 +1,6 @@
 # API
 
-## `User`
-
+: User {#lst:typa-User}
 ```go
 // User represents a user account
 type User struct {
@@ -18,10 +17,7 @@ type User struct {
 }
 ```
 
-: User {#lst:typa-User}
-
-## `UserProfile`
-
+: A user's public profile information {#lst:typa-UserProfile}
 ```go
 // UserProfile represents a user's public profile information
 type UserProfile struct {
@@ -33,10 +29,7 @@ type UserProfile struct {
 }
 ```
 
-: UserProfile represents a user's public profile information {#lst:typa-UserProfile}
-
-## `PublicUserInfo`
-
+: Public fields of a user object {#lst:typa-PublicUserInfo}
 ```go
 // PublicUserInfo represents the public fields of a user object
 type PublicUserInfo struct {
@@ -51,10 +44,7 @@ type PublicUserInfo struct {
 }
 ```
 
-: PublicUserInfo represents the public fields of a user object {#lst:typa-PublicUserInfo}
-
-## `AuthenticatedUser`
-
+: Fields available to an authenticated user {#lst:typa-AuthenticatedUser}
 ```go
 // AuthenticatedUser represents the fields available
 // to an authenticated user
@@ -64,11 +54,7 @@ type AuthenticatedUser struct {
 }
 ```
 
-: AuthenticatedUser represents the fields available to an authenticated user {#lst:typa-AuthenticatedUser}
-
-
-## `Resource`
-
+: Structure for resources {#lst:typa-Resource}
 ```go
 type Resource struct {
 	ID        uint64    `db:"id" json:"id"`
@@ -89,10 +75,7 @@ type Resource struct {
 }
 ```
 
-: Structure for resources {#lst:typa-Resource}
-
-## `ResourceVisibility`
-
+: Constants that represent the possible resource visibilities (Go does not support enums) {#lst:typa-ResourceVisibility}
 ```go
 const (
 	ResourceVisibilityPublic  string = "public"
@@ -100,10 +83,7 @@ const (
 )
 ```
 
-: Constants that represent the possible resource visibilities (Go does not support enums) {#lst:typa-ResourceVisibility}
-
-## `ResourcePackage`
-
+: Structure for resource packages {#lst:typa-ResourcePackage}
 ```go
 type ResourcePackage struct {
 	ID        uint64    `db:"id" json:"id"`
@@ -120,5 +100,3 @@ type ResourcePackage struct {
 	UploadedAt   *time.Time `db:"uploaded_at" json:"uploaded_at"`
 }
 ```
-
-: Structure for resource packages {#lst:typa-ResourcePackage}

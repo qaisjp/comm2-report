@@ -3,7 +3,6 @@
 project.pdf:
 	pandoc \
 		--filter pandoc-crossref \
-		--include-in-header includes/header.tex \
 		--include-before-body includes/before-body.tex \
 		--metadata-file includes/metadata.yaml \
 		--bibliography includes/hub-report.bib \
