@@ -8,7 +8,7 @@ project.pdf:
 		--bibliography includes/hub-report.bib \
 		chapters/**/*.md \
 		-o project.pdf
-	scp project.pdf hgs:uploads/project.pdf &
 	ag TODO && say TODO
 	ag CITEME && say CITEME
 	ag whilst && say REMOVE WHILST
+	scp project.pdf hgs:uploads/project.pdf &
