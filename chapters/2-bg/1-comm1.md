@@ -37,12 +37,14 @@ The existing system includes support for many different languages, making the we
 
 ![Flags that behave as buttons at the top of each page](chapters/2-bg/assets/comm1-flags.png){#fig:comm1-flags}
 
-Clicking one of the links in [@fig:comm1-flags] will switch standard parts the user interface to the language that the user has selected. On the home page, this currently changes the language of:
+Clicking one of the links in [@fig:comm1-flags] will switch standard parts the user interface to the language that the user has selected. On the home page, this currently:
 
-- the sidebar links
-- some navigation bar links (excluding "Admin Panel" and "Download MTA:SA")
-- NOT the top navigation icons
-- NOT the website description and headers
+- changes:
+    - the sidebar links
+    - some navigation bar links (excluding "Admin Panel" and "Download MTA:SA")
+- does not change:
+    - the top navigation icons
+    - the website description and headers
 
 The language selected is saved for the duration of the PHP session, which lasts until the browser is closed or the user's IP address has changed.
 
@@ -50,7 +52,7 @@ The language selected is saved for the duration of the PHP session, which lasts 
 
 Each flag is a hyperlink reference to the current page with the `set_lang` GET parameter appended. For example, if the user clicks on the German flag when on the resource listing page (`?p=resource`), they will be directed to the `?p=resources&set_lang=de` page.
 
-On receipt of the `set_lang` GET parameter, the backend immediately saves the language in the PHP session, via the `$_SESSION` dictionary. This parameter is used directly in file inclusion without sanitisation, making it an attack vector, as per CWE-22 [@CWE22ImproperLimitation].
+On receipt of the `set_lang` GET parameter, the backend immediately saves the language in the PHP session, via the `$_SESSION` dictionary. This parameter is used directly, without sanitisation, when using `include` inside PHP scripts. This is an attack vector, as per CWE-22 [@CWE22ImproperLimitation].
 
 Each language file is a PHP script that adds strings sequentially to an array, as shown below:
 
@@ -75,17 +77,14 @@ This is prone to errors and results in a poor user and contributor experience:
 
 - a typographical error can result in the wrong text being shown to users, or even a page failing to load due to script error.
 - translation effort can be duplicated, as shown in text item 1 and 51 above
-- a contributor building the website will not have a clear idea of what text is being shown.
-- internationalisation concepts such as pluralisation, number formatting, and date formatting is unsupported.
+- a contributor building the website will not have a clear idea what text is being shown.
+- internationalisation concepts such as pluralisation, number formatting, and date formatting are unsupported.
 
 # Homepage (`?p=main`)
 
 !["Latest resources" section on the homepage](chapters/2-bg/assets/comm1-resources.png){#fig:comm1-resources}
 
-As shown in [Figure @fig:comm1-resources], the homepage contains a short description of what the system is for and also a link to the resources page titled "Latest resources". There is also a preview of the 100 most recently uploaded resources underneath. Only resources that fit the following criteria are be shown:
-
-- must be 'active' (not 'suspended' or 'pending')
-- must have pictures in the gallery
+As shown in [Figure @fig:comm1-resources], the homepage contains a short description of what the system is for and also a link to the resources page titled "Latest resources". There is also a preview of the 100 most recently uploaded resources underneath. Only resources that have pictures uploaded in the resource gallery are shown.
 
 At the bottom of the page there are also pagination buttons. These pagination buttons simply submit a form that refreshes the page and simultaneously incrementing or decrementing the `oset` query string parameter by 100.
 
@@ -93,8 +92,7 @@ If the `oset` query parameter is `0` (or missing, as it is when you initially vi
 no pagination buttons are shown and only a single "MORE.." button is shown. The `oset` parameter is not capped, and can go as far as the earliest resource that fits the above criteria.
 
 If the `oset` parameter goes beyond the number of potentially viewable results, no resources will be shown, and the pagination
-buttons will still be enabled. This is considered to be poor user experience (UX) as a user may not know that they have reached the end of the list, and may attempt
-to keep clicking "Next" in the attempt to show more items. Currently a user is presented seventy pages, and in practice, a user most likely will not click through all those pages of pictures, so this pagination feature can be considered unnecessary.
+buttons will still be enabled. This is considered to be poor user experience (UX) as a user may not know that they have reached the end of the list, and may keep clicking "Next" in an attempt to show more items. Currently a user is presented seventy pages, and in practice, a user most likely will not click through all those pages of pictures, so this pagination feature can be considered unnecessary.
 
 # Resources (`?p=resources`)
 
@@ -208,7 +206,7 @@ UX issues here include:
 
 The description field does not support the embedding of rich media or other formatting. To improve user experience, MTA Hub could explore allowing users to insert rich text either through HTML or Markdown.
 
-Links inserted in the description are currently broken due to poor HTML escaping. This is also susceptible to Cross-Site Scripting (XSS) attacks, which can allow an attacker to "transfer private information, such as cookies that may include session information, from the victim's machine to the attacker", as per CWE-79 [@CWE79ImproperNeutralization].
+Links inserted in the description are rendered as invalid links due to poor HTML escaping. This is also susceptible to Cross-Site Scripting (XSS) attacks, which can allow an attacker to "transfer private information, such as cookies that may include session information, from the victim's machine to the attacker", as per CWE-79 [@CWE79ImproperNeutralization].
 
 **Calls to action**
 

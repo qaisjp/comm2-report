@@ -11,7 +11,7 @@ We did not have any experience with Vue, but had worked with Angular and React b
 We were particularly drawn to Angular's in-built `ng` command line interface, which:
 
 - gives us a standard project structure to use from the start which decreases developer overhead and makes it easy for new contributors to join the project.
-- can generate new modules, components, services and directives quickly (these concepts are discussed in [@sec:angular-concepts]).
+- can generate new modules, components, services and directives quickly.
 - automatically generates foundational tests, which encourages test-driven development.
 
 Angular also had an inbuilt internationalisation library which we could use to handle pluralisation, string extraction, number formatting, and date formatting. According to Angular's guide, "_Internationalization_ is the process of designing and preparing your app to be usable in different languages" [@AngularInternationalizationI18n].

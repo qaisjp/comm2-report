@@ -47,7 +47,7 @@ This would behave similar to a playlist on YouTube, where lists could be made pr
 
 # User Experience
 
-MTA Hub includes many quality of life improvements, making it more pleasing to use than the existing system.
+MTA Hub includes user interface and workflow improvements, making the system more pleasing to use than the existing system.
 
 Every page of MTA Hub is built mobile-first, is responsive, and supports all screen sizes. The existing system, however, does not have any responsive pages and only supports a large desktop screen size.
 

@@ -18,8 +18,8 @@ Other languages we considered were:
 
 ### Database
 
-Storing information in a database allows us to persist data across multiple independent requests. We chose to store our data in a PostgreSQL database as:
+Storing information in a database allows us to persist data across multiple independent requests. We chose to store our data in a PostgreSQL database as
 
-- our data is relational
-- it provides extra useful features such as enumerations and case insensitive pattern matching (the `ilike` operator)
-- the existing system already uses PostgreSQL so it will be easier to migrate to a new database schema than a completely different type of database
+- Our data is relational, making SQL the better choice over NoSQL. [@SQLVsNoSQL]
+- Compared to MySQL, PostgreSQL provides additional types (such as enumerations), case insensitive pattern matching (the `ilike` operator), and other extra features. [@MySQLVsPostgreSQL]
+- The existing system already uses PostgreSQL so it will be easier to migrate to a new database schema than a completely different type of database.

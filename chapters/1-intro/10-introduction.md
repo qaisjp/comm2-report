@@ -4,9 +4,11 @@
 
 # Motivation
 
-In 2006 a community platform was written in PHP for the MTA: San Andreas (MTA) community, allowing users to share, vote and discuss resources. In 2006 many web applications did not consider security and user experience, and MTA's community platform was no exception.
+MTA: San Andreas (MTA) is an open-source software project that "incorporates an extendable network play element into a proprietary commercial single-player PC game" [@AddedMarkdownREADME]. This project "provides a minimal sandbox style gameplay that can be extended through the Lua scripting language" [@AddedMarkdownREADME], and these extensions are known as "resources".
 
-This project replaces the existing platform with an improved system that abides by these fundamentals.
+In 2006 a community platform was written in PHP for the MTA community, allowing users to share, vote and discuss resources. In 2006 many web applications did not consider security and user experience, and MTA's community platform was no exception.
+
+This project modernises and replaces the existing platform with an improved system that abides by these fundamentals.
 
 # Contributions
 

@@ -13,7 +13,7 @@ A single page application (SPA) is "a website whose current page is updated dyna
 
 ## Npm Registry (npmjs.com)
 
-Npm is the package manager for Node. npmjs.com is a single page application built using React, which is a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
+Npm is the package manager for Node.js, which is a "JavaScript runtime built on \[Google\] Chrome's V8 JavaScript engine" [@NodeJs]. npmjs.com is a single page application built using React, which is a "JavaScript library for building user interfaces" [@ReactJavaScriptLibrary].
 
 The website does not have a public API, so we navigated through several pages on the website and analysed the network requests that were made.
 
@@ -73,6 +73,12 @@ Method   Path               Description
 : Private endpoints on `https://crates.io/api/private/session` {#tbl:crates-privend}
 
 [Table @tbl:crates-privend] shows that the only private endpoints are relating to third-party authentication. If we implement third-party authentication into our platform, we should also make it clear that those endpoints are private.
+
+Sobers [-@WhatOAuthDefinition] says:
+
+> "OAuth is an open-standard authorization protocol or framework that provides applications the ability for “secure designated access.” For example, you can tell Facebook that it’s OK for ESPN.com to access your profile or post updates to your timeline without having to give ESPN your Facebook password."
+
+OAuth allows users to log into the Rust Package Registry using their GitHub credentials, without giving the Rust Package Registry their GitHub credentials.
 
 ## GitHub (github.com)
 

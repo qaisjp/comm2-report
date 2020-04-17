@@ -15,7 +15,7 @@ Further work includes implementing the changes suggested in our Evaluation chapt
 
 ## Shared authentication
 
-MTA has a wide variety of services: forum, server listing manager, wiki, staff area, and of course this project - "community". Each of these services use a separate authentication system, and we could unify these by implementing an OAuth Provider.
+MTA has a wide variety of services: forum, server listing manager, wiki, staff area, and of course this project - "community". Each of these services use a separate authentication system, and we could unify these by implementing an OAuth Provider. This would allow other platforms that support OAuth to use MTA Hub's authentication system as a login mechanism.
 
 This would help improve access control as senior staff can manage all permissions in one place, but reduce security as there is a single point of failure.
 

@@ -12,7 +12,7 @@ project.pdf: $(MARKDOWN_FILES) includes/*
 		$(MARKDOWN_FILES) \
 		-o project.pdf
 	open project.pdf
-	ag TODO && say TODO
-	ag CITEME && say CITEME
-	ag whilst && say REMOVE WHILST
+	-ag --ignore Makefile todo && say todo
+	-ag --ignore Makefile citeme && say cite me
+	-ag --ignore Makefile whilst && say remove whilst
 	scp project.pdf hgs:uploads/project.pdf &
