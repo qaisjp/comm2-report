@@ -2,6 +2,13 @@
 
 MARKDOWN_FILES = $(shell find chapters -type f -name '*.md' | sort)
 
+test: project.pdf
+	open project.pdf
+	-ag --ignore Makefile todo && say todo
+	-ag --ignore Makefile citeme && say cite me
+	-ag --ignore Makefile whilst && say remove whilst
+	scp project.pdf hgs:uploads/project.pdf &
+
 project.pdf: $(MARKDOWN_FILES) includes/*
 	echo $(MARKDOWN_FILES)
 	pandoc \
@@ -11,10 +18,3 @@ project.pdf: $(MARKDOWN_FILES) includes/*
 		--bibliography includes/hub-report.bib \
 		$(MARKDOWN_FILES) \
 		-o project.pdf
-
-test: project.pdf
-	open project.pdf
-	-ag --ignore Makefile todo && say todo
-	-ag --ignore Makefile citeme && say cite me
-	-ag --ignore Makefile whilst && say remove whilst
-	scp project.pdf hgs:uploads/project.pdf &
