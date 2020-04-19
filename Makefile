@@ -18,3 +18,13 @@ project.pdf: $(MARKDOWN_FILES) includes/*
 		--bibliography includes/hub-report.bib \
 		$(MARKDOWN_FILES) \
 		-o project.pdf
+
+project.docx: $(MARKDOWN_FILES) includes/*
+	echo $(MARKDOWN_FILES)
+	pandoc \
+		--filter pandoc-crossref \
+		--include-before-body includes/before-body.tex \
+		--metadata-file includes/metadata.yaml \
+		--bibliography includes/hub-report.bib \
+		$(MARKDOWN_FILES) \
+		-o project.docx

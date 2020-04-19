@@ -33,11 +33,12 @@ classoption:
 
 title: "MTAHub: a website to share and discuss software packages"
 author: Qais Patankar
-lang: en-GB
+# lang: en-GB
 
 header-includes:
 - |
     ```{=latex}
+        \usepackage{enumerate}
         \pagenumbering{roman}
 
         \course{BEng Computer Science}

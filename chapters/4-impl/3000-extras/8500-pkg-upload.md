@@ -65,3 +65,29 @@ use `io.Copy`, and can produce a `io.ReaderAt` for the `archive/zip` library usi
 `io.ReaderAt`. Note that we must also "have sufficient memory for handling [the] zip file" [@GoGolangUnzip].
 
 \textcolor{blue}{DESIGN... =} Once an actual package has been uploaded the user can choose to publish it, changing the package from the "draft" state to the "pending_review" state.
+
+
+
+
+[Listing @lst:complex-rxjs-result] shows our most complex use of the RxJS library.
+
+```typescript
+createPackage(blob: Blob): Observable<PackageID> {
+  return this.resource$.pipe(
+    switchMap(r => this.resources.createPackage(r.author_id, r.id, blob)),
+    map(event => this.getUploadEventMessage(event)),
+    tap(message => console.log(message.ok, message.description, message.value)),
+    first(msg => msg.ok),
+    map(msg => msg.value),
+    catchError((err: HttpErrorResponse) => {
+      let reason = 'Something went wrong';
+      if (err.status !== INTERNAL_SERVER_ERROR) {
+        reason = err.error.message;
+      }
+      this.alerts.setAlert(reason);
+      return throwError(reason);
+    })
+  );
+}
+```
+: `ResourceViewService.createPackage` creates a new package for the resource currently being viewed.
