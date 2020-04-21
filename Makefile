@@ -10,7 +10,6 @@ test: project.pdf
 	scp project.pdf hgs:uploads/project.pdf &
 
 project.pdf: $(MARKDOWN_FILES) includes/*
-	echo $(MARKDOWN_FILES)
 	pandoc \
 		--filter pandoc-crossref \
 		--include-before-body includes/before-body.tex \
