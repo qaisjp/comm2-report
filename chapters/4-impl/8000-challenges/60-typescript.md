@@ -108,6 +108,10 @@ In [@lst:typf-ResDerived] we build other types using TypeScript's type transform
 
 #### Destructuring Objects
 
+> TODO: "This seems to recount how you learned a new bit of Go syntax? I'm not sure why that's relevant here.
+>
+> This is TypeScript syntax which I suppose needs to be made clearer. I could probably just get rid of this section, but I wanted to describe how I debugged this syntactical issue in TypeScript.
+
 Declaring extra types that are only being used once is wasteful. In a number of lambda functions we only want a single field of a single parameter.
 
 Take the following example:

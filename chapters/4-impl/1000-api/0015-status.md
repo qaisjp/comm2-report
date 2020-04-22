@@ -6,8 +6,8 @@ HTTP status codes are a "3-digit integer result code of the attempt to understan
 
 The status code `401` is means "Unauthorized", despite the code being used for _authentication_ and not _authorisation_. This means it's important to carefully selected status codes for certain scenarios.
 
--   401: being unauthenticated for a request that requires authentication
--   403: being authenticated but not authorised to perform an action
+-   401: being unauthenticated for a request that requires authentication [@HypertextTransferProtocola]
+-   403: being authenticated but not authorised to perform an action [@HypertextTransferProtocola]
 
 Okta [-@oktaAuthenticationVsAuthorization2018] describes authentication as
 "the act of validating that users are who they claim to be",

@@ -38,6 +38,13 @@ author: Qais Patankar
 header-includes:
 - |
     ```{=latex}
+        \usepackage{pdflscape}
+        \def\blandscape{\begin{landscape}}
+        \def\elandscape{\end{landscape}}
+    ```
+
+- |
+    ```{=latex}
         \usepackage{enumerate}
         \pagenumbering{roman}
 
