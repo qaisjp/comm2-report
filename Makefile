@@ -3,6 +3,7 @@
 MARKDOWN_FILES = $(shell find chapters -type f -name '*.md' | sort)
 
 test: project.pdf
+	-./quit.sh project.pdf
 	open project.pdf
 	-ag --ignore Makefile todo && say todo
 	-ag --ignore Makefile citeme && say cite me
