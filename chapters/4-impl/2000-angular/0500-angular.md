@@ -71,4 +71,4 @@ We installed the `moment` package, a "lightweight JavaScript date library for pa
 
 To streamline our use of `moment` we also installed the `ngx-moment` package. This provided us with custom pipes which we could use inside templates.
 
-generate "ago" strings using https://www.npmjs.com/package/ngx-moment
+TODO: generate "ago" strings using https://www.npmjs.com/package/ngx-moment
