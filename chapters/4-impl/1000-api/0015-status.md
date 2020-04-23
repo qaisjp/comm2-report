@@ -28,8 +28,17 @@ and authorisation as "the process of giving the user permission to access a spec
 
 **Processing uploads**
 
-When processing uploads we use the following HTTP status codes:
+When processing uploads we return the following HTTP status codes:
 
--
+- For any unexpected errors, we return status code `500 Internal Server Error`.
+- If the HTTP request is encoded in a way that does not support file uploads, we return the status code `415 Unsupported Media Type`.
+- We return the status code `422 Unprocessable Entity` in the following scenarios:
 
-Invalid resource zip uses status code 422 - https://httpstatuses.com/422 - Status Unprocessable Entity. This is only when checkResourceZip fails for a reason
+    - The file is missing.
+    - The file is not a ZIP file.
+
+        We check that the file type by ensuring that the Multipurpose Internet Mail Extensions type (MIME type) of the uploaded file is `application/zip`.
+
+    - We have processed the ZIP file and have determined the resource to contain invalid metadata.
+
+    We use `422 Unprocessable Entity` because "the server understands the content type of the request entity (hence a 415 Unsupported Media Type status code is inappropriate), and the syntax of the request entity is correct (thus a 400 Bad Request status code is inappropriate) but was unable to process the contained instructions" [@HTTPExtensionsWeb].

@@ -45,8 +45,7 @@ Descriptions have been produced by human-interpreting resource descriptions, and
 
 From [@tbl:bg-top10-authors], we can deduce that the top authors are useful contributors to the platform.
 
-When we look further into the leading user account (id 401291) we can see many similar uploads of a similar format, but containing unique content.
-Most resource names follow a scheme, incrementing sequentially from `racemap1` to `racemap129`, which is considered by the community to be abusive behaviour.
+When we look further into the leading user account (id 401291) we can see many similar uploads of a similar format, with resource names incrementing sequentially from `racemap1` to `racemap129`. This is considered by the community to be abusive behaviour.
 
 **Summary**
 

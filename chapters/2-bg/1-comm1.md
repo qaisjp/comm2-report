@@ -176,7 +176,7 @@ The authentication process has several UX problems:
 
     ![The navigation bar shows incorrect links on the logout page.](chapters/2-bg/assets/comm1-logout.png){#fig:comm1-logout}
 
-- The logout landing page only shows for one second before redirecting to the homepage. This is unexpected — according to [@InteractionDesignRedirect] "if there is text on a redirect screen give the user enough time to engage with the concept of the content, regardless of the time it takes to redirect".
+- The logout landing page only shows for one second before redirecting to the homepage. This is unexpected behaviour. According to [@InteractionDesignRedirect] "if there is text on a redirect screen give the user enough time to engage with the concept of the content, regardless of the time it takes to redirect".
 
 # Individual Resources (`?p=resources&s=details`)
 
@@ -236,14 +236,14 @@ Authors should also be able to delete their own resources, especially since they
 
 **Version History**
 
-This section is a table with at least four columns: "Version", "Publish Date", "Changes" and "Download".
+This section is a table with at least four columns, with additional columns shown to administrators: "Version", "Publish Date", "Changes" and "Download".
 
 This list can be very long and most users are only interested in the most recent updates, or updates since the last visit. To improve user experience, we could:
 
-- show a "see more" button to expand the list of versions shown, if many versions have been uploaded
-- track what resources the user downloads, and highlight versions that have been published since the user downloaded the resource
+- Show a "see more" button to expand the list of versions shown, if many versions have been uploaded.
+- Track what resources the user downloads, and highlight versions that have been published since the user downloaded the resource.
 
-For administrators, an additional "Contents" link is shown. This leads to a page that shows the `meta.xml` file of the resource and the contents of each script that has been included. If the script is compiled, the backend will decompile the script and present the administrator with the decompiled version of the script, for auditing purposes.
+For administrators, an additional "Contents" link is shown. This leads to a page that shows the `meta.xml` file of the resource and the contents of each script that has been included. If the script is compiled to bytecode, the backend will decompile the script and present the administrator with the decompiled version of the script, for auditing purposes.
 
 To improve user experience, we should present a list of scripts names in the form of hyperlinks, instead of requiring the user to scroll through the entire page. Additionally, the user should be able to collapse individual scripts that have been reviewed.
 
