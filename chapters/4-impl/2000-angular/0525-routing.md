@@ -18,7 +18,7 @@ Lazy loading - lazy load modules https://stackoverflow.com/a/44402953/1517394
 
 **Navigating without reloading**
 
-A user's profile URL is `/u/` followed by their username, for example `/u/alice`. Our API, however, supports querying a user by just using their ID. This if `alice` had the ID `2`, our users could access `alice`'s profile by visiting `/u/2`. This ID is not user friendly and we would like our users to know what page they are on just by looking at the URL. This section describes how implemented a redirector from `/u/2` to `/u/alice`.
+A user's profile URL is `/u/` followed by their username, for example `/u/alice`. Our API, however, supports querying a user by just using their ID. This if `alice` had the ID `2`, our users could access `alice`'s profile by visiting `/u/2`. This ID is not user friendly and we would like our users to know what page they are on just by looking at the URL. This section describes how we implemented a redirector from `/u/2` to `/u/alice`.
 
 Our initial implementation [@JavascriptChangeRoute] is described below:
 

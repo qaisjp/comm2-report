@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
 ```
 : Declaration of our ProfileComponent, used to display user profiles. {#lst:ProfileComponent-decl}
 
-All components we declare only the change the following attributes, an example of which is shown in [@lst:ProfileComponent-decl].
+All components we declare only change the following attributes, an example of which is shown in [@lst:ProfileComponent-decl].
 
 - `templateUrl` is the path to a file containing an Angular template.
 - `styleUrls` is an array of paths pointing to stylesheets that can be used to style this component.

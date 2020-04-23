@@ -37,7 +37,7 @@ The existing system includes support for many different languages, making the we
 
 ![Flags that behave as buttons at the top of each page](chapters/2-bg/assets/comm1-flags.png){#fig:comm1-flags}
 
-Clicking one of the links in [@fig:comm1-flags] will switch standard parts the user interface to the language that the user has selected. On the home page, this currently:
+Clicking one of the links in [@fig:comm1-flags] will switch standard parts of the user interface to the language that the user has selected. On the home page, this currently:
 
 - changes:
     - the sidebar links
@@ -125,7 +125,7 @@ This same flow is followed for both uploading brand new resources and updating e
 
 ![Searching resources for "handling editor" in the description](chapters/2-bg/assets/comm1-search.png){#fig:comm1-search}
 
-This section contains three input fields allowing the user to filter by name, description, or type. The `type` field is a dropdown consisting of the four allowed resources types listed in [@sec:terminology].
+This section contains three input fields allowing the user to filter by name, description, or type. The `type` field is a dropdown consisting of the four allowed resource types listed in [@sec:terminology].
 
 Pressing the search button will send a POST request to the same page with the search query sent via the submitted form. As shown in [@fig:comm1-search], the search results page has:
 
@@ -172,7 +172,7 @@ The authentication process has several UX problems:
 
     ![A warning is shown twice and does not stand out.](chapters/2-bg/assets/comm1-registration-error.png){#fig:comm1-registration-error}
 
-- The logout landing page shows links in the navigation bar that should only be shown to logged in users, as shown in [@fig:comm1-logout]. This is can confuse t he user into thinking that the logout process failed.
+- The logout landing page shows links in the navigation bar that should only be shown to logged in users, as shown in [@fig:comm1-logout]. This can confuse the user into thinking that the logout process failed.
 
     ![The navigation bar shows incorrect links on the logout page.](chapters/2-bg/assets/comm1-logout.png){#fig:comm1-logout}
 
@@ -245,6 +245,6 @@ This list can be very long and most users are only interested in the most recent
 
 For administrators, an additional "Contents" link is shown. This leads to a page that shows the `meta.xml` file of the resource and the contents of each script that has been included. If the script is compiled to bytecode, the backend will decompile the script and present the administrator with the decompiled version of the script, for auditing purposes.
 
-To improve user experience, we should present a list of scripts names in the form of hyperlinks, instead of requiring the user to scroll through the entire page. Additionally, the user should be able to collapse individual scripts that have been reviewed.
+To improve user experience, we should present a list of script names in the form of hyperlinks, instead of requiring the user to scroll through the entire page. Additionally, the user should be able to collapse individual scripts that have been reviewed.
 
 We should also make this "Contents" feature available to all users, and not just administrators. Only administrators would be able to access the decompilation feature. Since opening large zip files in memory can put unnecessary stress on our backend, we should support client-side downloading and unpacking.

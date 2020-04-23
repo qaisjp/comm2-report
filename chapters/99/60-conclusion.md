@@ -4,7 +4,7 @@
 
 We achieved some of the project goals by creating a secure web application that allows users to share, discover and download resources.
 
-We made the web application more efficient, be built using better infrastructure, and take into account secure practices. It is also much easier for contributors to develop with.
+We made the web application be more efficient, be built using better infrastructure, and take into account secure practices. It is also much easier for contributors to develop with.
 
 
 
@@ -31,7 +31,7 @@ Resources aren't the only kind of shareable "object" available to the MTA commun
 
 **Skin sharing**
 
-The MTA client is customisable and users can install custom themes that alter the way the user interface looks. We could provide a way for graphic designers to publish these skins, and allow users to preview these skins in the browser. Additionally, we can make use of URI schemes to providing single-click installations of these skins.
+The MTA client is customisable and users can install custom themes that alter the way the user interface looks. We could provide a way for graphic designers to publish these skins, and allow users to preview these skins in the browser. Additionally, we can make use of URI schemes to provide single-click installations of these skins.
 
 **Vehicle configurations**
 

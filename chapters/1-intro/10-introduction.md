@@ -16,7 +16,7 @@ I was able to rewrite the base functionality of the existing platform, allowing 
 
 - Compared to the previous system, resources are no longer globally scoped and are scoped per user ([@sec:squatting]).
 - Resource creators now have greater permissions than users invited as collaborators, preventing collaborators from performing destructive actions.
-- Authors can now insert rich text content into their resource description by using Markdown. This allows them to market their resources better.
+- Authors can now insert rich text content into their resource descriptions by using Markdown. This allows them to market their resources better.
 - Website internationalisation has been replaced with a system that is more powerful and more sustainable ([@sec:libs-frontend]).
 - User interface and user experience has been improved, allowing for greater user retention.
 - The user interface supports all screen sizes, allowing for the platform to be comfortably used on mobiles.

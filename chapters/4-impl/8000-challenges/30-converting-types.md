@@ -20,6 +20,6 @@ Where the `json` tag is provided (see `AuthenticatedUser.Level` in [@lst:typa-Au
 
 As shown in `UserProfile.UserID` ([@lst:typa-UserProfile]), a value of `"-"` means that this field should be ignored during marshalling or unmarshalling. Providing an additional value `omitempty` (see `PublicUserInfo.FollowsYou` in [@lst:typa-PublicUserInfo]) means that a zero value^[Zero values are `0` for numeric types, `false` for booleans, `""` for strings, and `nil` for pointers] will result in that field being omitted during JSON marshalling.
 
-Our SQL package, `github.com/jmoiron/sqlx`, internally uses the `database/sql` package from the standard library, allowing us to use take advantage of the pre-existing tagging functionality available.
+Our SQL package, `github.com/jmoiron/sqlx`, internally uses the `database/sql` package from the standard library, allowing us to take advantage of the pre-existing tagging functionality available.
 
 Where the `db` tag is provided (see `User.ID` in [@lst:typa-User]), the value corresponds to the column name in the database (in `User.ID` the column is `id`).

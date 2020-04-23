@@ -28,7 +28,7 @@ Our `intercept` method is shown in @lst:http-interceptor and described below:
 
 1. If the URL does not begin with MTA Hub's API base URL, as defined in the environment configuration, do not update the `HttpRequest` defined by the `req` variable.
 
-    This is security check prevents the user's authorization token being shared with unintended servers.
+    This security check prevents the user's authorization token being shared with unintended servers.
 
 1. Or, if the set of request headers includes the `X-Authorization-None` key:
 

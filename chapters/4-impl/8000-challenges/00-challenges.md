@@ -19,4 +19,4 @@ Sometimes we want to set a variable inside our template instead of inside our cl
 ```
 : Performing `creator = resource.authors[0]`. {#lst:angular-template-forloop-one}
 
-Using `*ngFor` in the way described above is also useful when want to use asynchronous data in multiple places without using the `async` pipe multiple times. The `async` pipe "subscribes to an `Observable` [..] and returns the latest value it has emitted" [@AngularAsyncPipe]. Unnecessary subscriptions to an `Observable` can cause unexpected behaviour.
+Using `*ngFor` in the way described above is also useful when you want to use asynchronous data in multiple places without using the `async` pipe multiple times. The `async` pipe "subscribes to an `Observable` [..] and returns the latest value it has emitted" [@AngularAsyncPipe]. Unnecessary subscriptions to an `Observable` can cause unexpected behaviour.

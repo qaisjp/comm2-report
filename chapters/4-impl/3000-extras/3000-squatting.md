@@ -5,7 +5,7 @@ Resources in the existing system are scoped to a global level. This means that t
 
 Name-squatting, a form of _cybersquatting_, is the practice of registering - and not legitimately using - popular names in the hope to mislead others, or block others from using the name for a genuine purpose.
 
-We checked to see if there are any user accounts that appear to "squat" on a large number of resource names. On the existing system's database, we first we ran the following query to get the list of users that own at least twenty resources.
+We checked to see if there are any user accounts that appear to "squat" on a large number of resource names. On the existing system's database, we first ran the following query to get the list of users that own at least twenty resources.
 
 ```sql
 with owners as (
@@ -40,7 +40,7 @@ where users.id = owners.owner_id;
 | 347609  | 44   | unique misc scripts                  <!-- https://community.mtasa.com/index.php?p=profile&id=347609 -->
 | 281213  | 43   | unique misc scripts (all Spanish)    <!-- https://community.mtasa.com/index.php?p=profile&id=281213 -->
 
-: Top ten resource authors with a brief description of the kinds of resource that each user has uploaded.
+: Top ten resource authors with a brief description of the kinds of resources that each user has uploaded.
 Descriptions have been produced by human-interpreting resource descriptions, and not programmatically. {#tbl:bg-top10-authors}
 
 From [@tbl:bg-top10-authors], we can deduce that the top authors are useful contributors to the platform.

@@ -71,7 +71,7 @@ In [@lst:typf-ResDerived] we build other types using TypeScript's type transform
         readonly id: number;
     }
     ```
-- `ResourcePatchRequest` takes picks a number of properties from `Resource`, then makes them the properties _optional_. Optional properties are denoted by a question mark:
+- `ResourcePatchRequest` takes a number of properties from `Resource`, then makes them _optional_. Optional properties are denoted by a question mark:
 
     **Declaration**
 
@@ -178,7 +178,7 @@ In TypeScript it is not possible to create a new object with default 'zero' valu
 
 To prevent bugs, it is important for our code to raise a compile-time error if we changed the declaration of `UserProfileData`. However, we discovered that this code would not cause an error because the ` as ` keyword converts an object of type `any` into the type on the right hand side.
 
-We discovered that in a previous version of TypeScript `<UserProfileData> { ... }` was a type _assertion_ - asserting that a given object was of the type `UserProfileData`, without actually checking the object. In that same version, using `{ ... } as UserProfileData` would throw an compile-time error as the types do not match.
+We discovered that in a previous version of TypeScript `<UserProfileData> { ... }` was a type _assertion_ - asserting that a given object was of the type `UserProfileData`, without actually checking the object. In that same version, using `{ ... } as UserProfileData` would throw a compile-time error as the types do not match.
 
 In later versions, TypeScript had to remove the `<T> x` syntax as it clashed with a JavaScript extension called "JSX", which allows programmers to write HTML inside JavaScript code. To provide the same type assertion feature, the TypeScript developers weakened the ` as ` keyword, no longer making it possible to write an object, declare _and_ check its type at the same time [@HowCanCreate].
 
