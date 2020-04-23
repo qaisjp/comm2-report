@@ -14,4 +14,4 @@ We intend for this same Docker image to be used in production, keeping the devel
 
 The Angular command line interface ensures that the tools currently being used match the version defined in the repository's `package.json` file, so we do not need to use Docker for the frontend.
 
-TODO: add actual docker config discussion in implementation
+<!-- TODO: add actual docker config discussion in implementation -->

@@ -19,7 +19,7 @@ and authorisation as "the process of giving the user permission to access a spec
 >
 > "In summary, a 401 Unauthorized response should be used for missing or bad authentication, and a 403 Forbidden response should be used afterwards, when the user is authenticated but isn’t authorized to perform the requested operation on the given resource."
 
-<!-- Sources: (TODO)
+<!-- Sources:
 
 -   https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses
 -   https://httpstatuses.com/401

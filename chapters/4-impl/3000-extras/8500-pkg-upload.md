@@ -1,18 +1,18 @@
 
-# Upload packages
+# Upload packages {#sec:8500-pkg-upload}
 
 A user should be able to send multiple `POST /v1/resources/:resource_id/pkg` requests, each creating a blank "draft".
 
-TODO / QUESTION: which bits here are design and which bits are implementation? I suppose in Design we can do a more high level overview and then go into the nitty gritty stuff later in Implementation?
-
-\textcolor{blue}{DESIGN... =} Once a file is uploaded by the client and is memory, we check the MIME
+Once a file is uploaded by the client and is in memory, we check the MIME
 type of the uploaded file. If the file is not of the "application/zip"
 MIME type, we return a "415 Unsupported Media Type" and discard the
 data.
 
-TODO: then we check the ZIP in memory using a number heuristics. What are these heuristics? Considering first getting somewhat feature parity first (or explaining why certain parts won't get implemented). And then add extra features in a new chapter after it's implemented?
+We then check the ZIP in memory using the following heuristics:
 
-\textcolor{blue}{MORE DESIGN... =} Once we've verified that the zip is safe to use, we upload to a storage
+- TODO
+
+Once we've verified that the ZIP is safe, we upload to a storage
 service using the `gocloud.dev/blob` library (a Go package).
 
 > "Blobs are a common abstraction for storing unstructured data on
@@ -28,7 +28,7 @@ bandwidth. But we can still use Local Storage when sysadmins are testing
 or if they would prefer to use local storage (if they do not want to pay
 for an external service)
 
-\textcolor{blue}{IMPL... =} This library gives us safety as it converts filenames to
+This library gives us safety as it converts filenames to
 something safe. This means that we don't have to worry about malicious
 filenames when storing files locally.
 
@@ -64,10 +64,8 @@ use `io.Copy`, and can produce a `io.ReaderAt` for the `archive/zip` library usi
 `bytes.NewReader` — this function returns a `bytes.Reader` which _does__ implement
 `io.ReaderAt`. Note that we must also "have sufficient memory for handling [the] zip file" [@GoGolangUnzip].
 
-\textcolor{blue}{DESIGN... =} Once an actual package has been uploaded the user can choose to publish it, changing the package from the "draft" state to the "pending_review" state.
-
-
-
+<!-- Once an actual package has been uploaded the user can choose to publish it, changing the package from the "draft" state to the "pending_review" state.
+ -->
 
 [Listing @lst:complex-rxjs-result] shows our most complex use of the RxJS library.
 
@@ -90,4 +88,4 @@ createPackage(blob: Blob): Observable<PackageID> {
   );
 }
 ```
-: `ResourceViewService.createPackage` creates a new package for the resource currently being viewed.
+: `ResourceViewService.createPackage` creates a new package for the resource currently being viewed. {#lst:complex-rxjs-result}
