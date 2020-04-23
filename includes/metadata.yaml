@@ -52,7 +52,7 @@ header-includes:
         \project{4th Year Project Report}
 
         \abstract{
-            In this project we discuss, design and implement a resource sharing website
+            In this project we discuss, design and implement a website for sharing resources
             for the game MTA: San Andreas. \emph{Resources} are modular packages containing
             scripts, assets and metadata that change the way the game behaves.
 

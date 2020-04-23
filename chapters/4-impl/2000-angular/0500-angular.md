@@ -67,8 +67,11 @@ For example, the time _4 minutes and 5 seconds past 3 PM on the 2nd of January 2
 
 We could have represented dates and times as Unix time - the number of seconds since 00:00:00 UTC on 1 January 1970 - but this format is unable to represent timezones and can lose precision if the number is converted or parsed using the incorrect type.
 
-We installed the `moment` package, a "lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates" [@MomentNpm], to parse these timestamps in our frontend.
+We installed the `moment` package, a "lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates" [@MomentNpm], to parse these timestamps in our frontend. This allows us to generate relative date strings such as "5 minutes ago".
 
-To streamline our use of `moment` we also installed the `ngx-moment` package. This provided us with custom pipes which we could use inside templates.
+To streamline our use of `moment` we also installed the `ngx-moment` package. This provided us with custom pipes which we could use inside templates, as shown in [@lst:moment-example-tgl]
 
-TODO: generate "ago" strings using https://www.npmjs.com/package/ngx-moment
+```html
+<span class="text-gray-light">{{ res.created_at | amTimeAgo }}</span>
+```
+: This is used to show the time a resource was created, relative to the user's current time. {#lst:moment-example-tgl}
