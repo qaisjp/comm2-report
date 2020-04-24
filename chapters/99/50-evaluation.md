@@ -62,8 +62,6 @@ Due to the use of a more efficient database schema, supported by the proper use 
 
 The use of a statically compiled binary in our API, compared to the interpreted nature of PHP, has improved runtime performance.
 
-TODO: actual numbers, graphs
-
 # User Testing
 
 Due to the COVID-19 crisis we were unable to perform valuable in-person user testing.

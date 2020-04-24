@@ -23,7 +23,7 @@ Angular has the following concepts:
 - Components: functional views which have associated TypeScript have HTML templates and CSS styles associated with them, and are included in other HTML templates.
 - Directives: extend the templating system, making it possible to add new HTML attributes.
 - Services: persistent single classes that are shared between components.
-- Modules: which can import other modules, declare components & directives, and export components & directives.
+- Modules: which can import other modules, declare components and directives, and export components and directives.
 
 All of these concepts are implemented as TypeScript classes. Components and Directives can only interact with each other through services, and these services are _injected_ into the class via the constructor. This process is known as _dependency injection_ and it enhances software testing by allowing "dependencies to be mocked or stubbed out" [@DesignPatternsWhat].
 
@@ -36,7 +36,7 @@ We wanted a CSS framework that had the following properties:
 - **flexbox**: provides "a more efficient way to lay out, align and distribute space among items in a container" [@CompleteGuideFlexbox]
 - **Angular support**: the framework should work with Angular
 
-We were initially drawn to Bootstrap as it satisfies all the constraints and we had previous experience using the framework. We discovered that Bootstrap 4 uses jQuery, which is a dependency that does not align with the declarative nature of Angular, and can cause bugs if used improperly.
+We were initially drawn to Bootstrap as it satisfies all the constraints and we had previous experience using the framework. However, we discovered that Bootstrap 4 uses jQuery, which is a dependency that does not align with the declarative nature of Angular, and can cause bugs if used improperly.
 
 !["The `TimelineItem` component is used to display items on a vertical timeline, connected by `TimelineItem-badge` elements." [@TimelinePrimerCSS]](chapters/3-design/assets/primer-timeline.png){#fig:primer-timeline}
 

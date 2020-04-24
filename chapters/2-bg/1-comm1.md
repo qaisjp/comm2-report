@@ -135,7 +135,7 @@ Pressing the search button will send a POST request to the same page with the se
 
 This page has several UX problems:
 
-- There is no need to show the Upload resource section - this wastes vital vertical space.
+- There is no need to show the Upload resource section - this wastes vertical space.
 - Input fields are cleared, requiring the user to manually type their query again.
 - Because this is a POST request, clicking on a resource and then pressing the back button will result in a browser popup asking the user if they would like to resend the search query request.
     1. There is no need to show the popup as the user will always want to see the search results again.
@@ -149,7 +149,7 @@ This section shows 15 unsuspended resources, ordered by _download count_ in desc
 
 This section is quite useful to new users that are server owners - it gives them an idea of the most popular resources since the beginning of the platform. These resources are often quite mature and are easy for server owners to install. However, download count is not an accurate metric for quality, and can simply reflect the community's historical interest in the resource.
 
-This section is not useful to returning users as the section changes infrequently. This is because long-standing resources are likely to accumulate many downloads over a long period of time - it is unlikely for a new resource to legitimately accumulate more downloads than a resource that was created over ten years ago.
+This section is not useful to returning users as the section changes infrequently. This is because long-standing resources are likely to accumulate many downloads over a long period of time -- it is unlikely for a new resource to legitimately accumulate more downloads than a resource that was created over ten years ago.
 
 **"Top rated Resources"**
 
@@ -193,7 +193,7 @@ Individual resource pages are split into four main sections:
 
 UX issues here include:
 
-- The creator of this resource is the user name `Remi-X`, but this isn't clear.
+- The creator of this resource is the user named `Remi-X`, but this isn't clear.
 - If the user is logged out, instead of saying "You need to be logged in to vote", the `Rate` row should either:
     - be hidden if the user is not logged in
     - be shown, but prompt for a login when a vote button is clicked
@@ -232,7 +232,7 @@ The edit resource page allows the user to:
 
 Resources do not have a concept of "creators" and "collaborators", only "authors", and this means that the add or remove authors feature has serious security implications. All authors have equal permissions, meaning that a resource can be hijacked and stolen from its creator by a rogue collaborator. This is a security vulnerability we should resolve in MTA Hub.
 
-Authors should also be able to delete their own resources, especially since they are already permitted to delete all resource packages. One possible reason that this feature was gated to administrators only is to prevent malicious resource authors quickly name-squatting a resource after it has been deleted.
+Authors should also be able to delete their own resources, especially since they are already permitted to delete all resource packages. One possible reason that this feature was restricted to administrators only is to prevent malicious resource authors quickly name-squatting a resource after it has been deleted.
 
 **Version History**
 

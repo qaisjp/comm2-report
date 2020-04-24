@@ -20,10 +20,10 @@ The lines above are described by the following:
 - Line 5: first we trim spaces from the front and back of the user email address.
 - Line 4: we convert that string to lowercase.
 - Line 3: since our input is a _string_, we use the `[]byte(..)` function to return a copy of the string's underlying byte array (a `[]byte`). We can then use the `Sum` function from the `md5` library to generate an MD5 checksum from our array of bytes, returning another array of bytes.
-- Line 2: the `%x` _verb_ in our _format string_ encodes a `[]byte` using "base 16, lower-case, [with] two characters per byte"[@FmtGoProgramming].
+- Line 2: the `%x` _verb_ in our _format string_ encodes a `[]byte` using "base 16, lower-case, [with] two characters per byte" [@FmtGoProgramming].
 - Line 1: we use the `Sprintf` function from the `fmt` package to generate a _string_ based on a _format string_.
 
-Gravatar does not come without privacy implications, though. One could "generate a list of email addresses and compute the corresponding md5 hash [and then] look for collisions in your list of gravatars"[@GravatarsWhyPublishing] -- this is known as a **rainbow table** attack.
+Gravatar does not come without privacy implications, though. One could "generate a list of email addresses and compute the corresponding md5 hash [and then] look for collisions in your list of gravatars" [@GravatarsWhyPublishing] -- this is known as a **rainbow table** attack.
 
 To combat this problem, before the final public release we plan to introduce a setting that allows the user to disable this feature.
 

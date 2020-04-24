@@ -30,8 +30,9 @@ classoption:
     - singlespacing
     - parskip
     - deptreport
+    # - twoside
 
-title: "MTAHub: a website to share and discuss software packages"
+title: "MTA Hub: a website to share and discuss software packages"
 author: Qais Patankar
 # lang: en-GB
 

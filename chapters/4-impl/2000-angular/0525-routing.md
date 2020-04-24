@@ -11,24 +11,25 @@ The routing module provides many Angular services, but the two services we used 
 - `ActivatedRoute`, which allows us to access information about the currently activated route
 - `Router`, which allows us to manage routing in generally, so we can navigate to different sections of the website
 
-**Lazy loading**
+<!-- **Lazy loading**
 
 Lazy loading - lazy load modules https://stackoverflow.com/a/44402953/1517394
+ -->
 
 
 **Navigating without reloading**
 
-A user's profile URL is `/u/` followed by their username, for example `/u/alice`. Our API, however, supports querying a user by just using their ID. This if `alice` had the ID `2`, our users could access `alice`'s profile by visiting `/u/2`. This ID is not user friendly and we would like our users to know what page they are on just by looking at the URL. This section describes how we implemented a redirector from `/u/2` to `/u/alice`.
+A user's profile URL is `/u/` followed by their username, for example `/u/alice`. Our API, however, supports querying a user by just using their ID. Thus if `alice` had the ID `2`, our users could access `alice`'s profile by visiting `/u/2`. This ID is not user friendly and we would like our users to know what page they are on just by looking at the URL. This section describes how we implemented a redirector from `/u/2` to `/u/alice`.
 
 Our initial implementation [@JavascriptChangeRoute] is described below:
 
 ```{=latex}
 \begin{enumerate}[{Line} 1:]
 \item Subscribe to URL parameters updates
-\item Fetch the user profile that corresponds to the `username` URL parameter. Note that the username given in the URL parameters may actually be a user ID.
+\item Fetch the user profile that corresponds to the \texttt{username} URL parameter. Note that the username given in the URL parameters may actually be a user ID.
 \stepcounter{enumi}
 \item Check the retreived username is different to the username given in the URL parameters.
-\item Use `window.location.pathname` to navigate to the canonical user profile URL.
+\item Use \texttt{window.location.pathname} to navigate to the canonical user profile URL.
 \end{enumerate}
 ```
 

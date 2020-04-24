@@ -1,6 +1,6 @@
 # Existing software hosting websites {#sec:bg-api-analysis}
 
-We discuss a number of the following features for each site:
+In this section analyse three websites used within the software development community for hosting software packages.  We discuss the following features for each website:
 
 - **API** Does the website have an API?
     - **Architecture.** Is the API and/or website REST-compliant? What is the URL scheme like?
@@ -52,7 +52,7 @@ This pop-in effect results in poor user experience, and can be resolved in one o
 
 1. Using a single endpoint to return all the data necessary.
 2. Rendering data as soon as it is available, and showing a seamless loading indicator for information that is still being fetched.
-3. Lazy loading statistics - only fetching this data when the user scrolls down to the statistics section.
+3. Lazily loading statistics, ensuring that data is only fetched when the user scrolls down to the statistics section.
 4. Enabling HTTP/2 for the API, so that requests can be multiplexed into a single connection.
 
 ---------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 Our frontend needs to be able to communicate with our web API using an API that provides HTTP client functionality. There are two standard ways to make HTTP requests in JavaScript:
 
 - The `XMLHTTPRequest` API, released by Internet Explorer 5 in 1998 [@FetchAPI], and standardised by the World Wide Web Consortium (W3C) international standards organisation in 2006 [@XMLHttpRequestObject].
-- The Fetch API, released in , which "provides an interface for fetching resources (including across the network)" [@FetchAPIa].
+- The Fetch API, defined by the Fetch Living Standard [@FetchStandard], which "provides an interface for fetching resources (including across the network)" [@FetchAPIa].
 
 We initially chose to use Fetch's API as, compared to `XMLHTTPRequest`, it is much simpler and "provides a more powerful and flexible feature set" [@FetchAPIa]. The Angular framework, however, provides a `HttpClientModule` that can be imported from the `@angular/common/http` package, with the following additional features:
 
@@ -17,7 +17,7 @@ We initially chose to use Fetch's API as, compared to `XMLHTTPRequest`, it is mu
 
 <!-- talk about how certain requests should still go through despite an authentication failure -->
 
-Our `AuthInterceptor` class, a HTTP interceptor, is defined in . Our interceptor includes the user's authentication token in all requests sent to MTA Hub's API unless the request is explicitly set to be unauthenticated.
+Our `AuthInterceptor` class, a HTTP interceptor, is defined in `website/src/app/auth/auth.interceptor.ts`. Our interceptor includes the user's authentication token in all requests sent to MTA Hub's API unless the request is explicitly set to be unauthenticated.
 
 Our `AuthInterceptor` class implements the `HttpInterceptor` class defined by the `@angular/common/http` package. The `intercept` method takes two parameters:
 

@@ -8,9 +8,12 @@ type of the uploaded file. If the file is not of the "application/zip"
 MIME type, we return a "415 Unsupported Media Type" and discard the
 data.
 
-We then check the ZIP in memory using the following heuristics:
+We then check the following properties of ZIP file:
 
-- TODO
+- ensure it contains no executable files
+- ensure the metadata file is valid XML
+- ensure the metadata file includes an `<info>` tag
+- ensure the metadata file `<info>` tag includes a well-formatted
 
 Once we've verified that the ZIP is safe, we upload to a storage
 service using the `gocloud.dev/blob` library (a Go package).
